@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<title>BrainBridge</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<style>
+:root{
+  --bg:#EDE9F8;--bg2:#ffffff;--bg3:#f0ecfc;
+  --bd:rgba(139,124,248,.12);--bd2:rgba(139,124,248,.2);
+  --tx:#1a1a2e;--tx2:#6b6b8a;--tx3:#a0a0b8;
+  --purple:#8B7CF8;--ind:#7C6CE8;--grn:#4CAF7D;--red:#F06292;--amb:#FFB74D;
+  --yellow:#FFF5CC;--mint:#D4F5E9;--lavender:#E8E4FF;
+  --grad:linear-gradient(135deg,#8B7CF8,#6C5CE7);
+  --grad2:linear-gradient(135deg,#A8EDEA,#FED6E3);
+  --shadow:0 4px 20px rgba(139,124,248,.12);
+  --shadow2:0 8px 32px rgba(139,124,248,.18);
+  --r:18px;--r2:12px;--font:'Poppins',sans-serif;
+  --sb:240px;--hdr:64px;--bnav:70px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--tx);min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button{cursor:pointer;font-family:var(--font);border:none;background:none}
+input,textarea,select{font-family:var(--font);-webkit-appearance:none;appearance:none}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:2px}
+
+/* AUTH */
+#auth{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg);position:relative;overflow:hidden}
+#auth::before{content:'';position:absolute;width:350px;height:350px;background:radial-gradient(circle,rgba(139,124,248,.2),transparent 70%);top:-80px;right:-80px;border-radius:50%;pointer-events:none}
+#auth::after{content:'';position:absolute;width:280px;height:280px;background:radial-gradient(circle,rgba(108,92,231,.15),transparent 70%);bottom:-60px;left:-60px;border-radius:50%;pointer-events:none}
+.auth-card{background:var(--bg2);border:1px solid var(--bd2);border-radius:24px;padding:clamp(28px,5vw,44px) clamp(22px,5vw,36px);width:100%;max-width:390px;box-shadow:var(--shadow2);position:relative;z-index:1}
+.auth-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.auth-logo-icon{width:42px;height:42px;background:var(--grad);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 4px 12px rgba(139,124,248,.35)}
+.auth-logo{font-size:clamp(20px,5vw,26px);font-weight:800;color:var(--tx)}
+.auth-sub{color:var(--tx2);font-size:13px;margin-bottom:26px;margin-left:52px;margin-top:-2px}
+.tabs{display:flex;background:var(--bg);border-radius:12px;padding:4px;gap:4px;margin-bottom:22px;border:1px solid var(--bd)}
+.tab{flex:1;padding:10px;border-radius:9px;font-size:13px;font-weight:700;color:var(--tx2);transition:all .18s;cursor:pointer}
+.tab.on{background:var(--purple);color:#fff;box-shadow:0 2px 10px rgba(139,124,248,.35)}
+.fld{margin-bottom:14px}
+.lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--tx2);margin-bottom:6px}
+.inp{width:100%;padding:13px 15px;background:var(--bg);border:1.5px solid var(--bd2);border-radius:12px;color:var(--tx);font-size:15px;outline:none;transition:all .18s}
+.inp:focus{border-color:var(--purple);background:#fff;box-shadow:0 0 0 3px rgba(139,124,248,.1)}
+.inp::placeholder{color:var(--tx3)}
+.btn-grad{width:100%;padding:14px;background:var(--grad);color:#fff;border-radius:12px;font-size:15px;font-weight:700;transition:opacity .15s,transform .1s,box-shadow .15s;margin-top:4px;box-shadow:0 4px 16px rgba(139,124,248,.35)}
+.or-sep{display:flex;align-items:center;gap:10px;margin:14px 0 10px;color:var(--tx3);font-size:12px;font-weight:600}
+.or-sep::before,.or-sep::after{content:'';flex:1;height:1px;background:var(--bd2)}
+.btn-google{width:100%;padding:12px 14px;background:#fff;border:1.5px solid var(--bd2);border-radius:12px;font-size:14px;font-weight:700;color:var(--tx);display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:all .18s;box-shadow:0 2px 8px rgba(0,0,0,.06);text-decoration:none}
+.btn-google:hover{border-color:var(--purple);box-shadow:0 4px 14px rgba(139,124,248,.18)}
+.btn-grad:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 6px 20px rgba(139,124,248,.4)}
+.btn-grad:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.a-err{color:var(--red);font-size:12px;margin-top:10px;min-height:16px;text-align:center;font-weight:600}
+
+/* APP */
+#app{display:none}
+#app.on{display:block}
+
+/* MOBILE HEADER */
+.hdr{display:none;position:sticky;top:0;z-index:200;height:var(--hdr);background:var(--bg2);border-bottom:1px solid var(--bd);padding:0 18px;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(139,124,248,.08)}
+.hdr-left{display:flex;align-items:center;gap:10px}
+.hdr-logo-icon{width:34px;height:34px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 3px 10px rgba(139,124,248,.3)}
+.hdr-logo{font-size:16px;font-weight:800;color:var(--tx)}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 3px 10px rgba(139,124,248,.3)}
+.hdr-notif{width:36px;height:36px;background:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--bd2);color:var(--tx2)}
+
+/* BOTTOM NAV */
+.bnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--bg2);border-top:1px solid var(--bd);flex-direction:row;align-items:stretch;padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -4px 20px rgba(139,124,248,.1)}
+.bni{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;cursor:pointer;color:var(--tx3);font-size:10px;font-weight:700;transition:color .15s;border:none;background:none;font-family:var(--font)}
+.bni.on{color:var(--purple)}
+.bni svg{width:22px;height:22px}
+.bni-dot{width:5px;height:5px;border-radius:50%;background:var(--purple);display:none}
+.bni.on .bni-dot{display:block}
+
+/* SIDEBAR */
+.sb{width:var(--sb);background:var(--bg2);border-right:1px solid var(--bd);position:fixed;top:0;left:0;height:100vh;display:flex;flex-direction:column;padding:0 12px 24px;z-index:100;box-shadow:2px 0 20px rgba(139,124,248,.08)}
+.sb-logo-row{display:flex;align-items:center;gap:10px;padding:22px 10px 20px}
+.sb-logo-icon{width:38px;height:38px;background:var(--grad);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;box-shadow:0 4px 12px rgba(139,124,248,.35)}
+.sb-logo{font-size:16px;font-weight:800;color:var(--tx)}
+.sb-sec{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);padding:6px 10px 5px;margin-top:6px}
+.nav{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;color:var(--tx2);font-size:13px;font-weight:600;cursor:pointer;width:100%;text-align:left;transition:all .15s}
+.nav:hover{background:var(--bg3);color:var(--tx)}
+.nav.on{background:var(--lavender);color:var(--purple)}
+.nav.on svg{color:var(--purple)}
+.nav svg{width:18px;height:18px;flex-shrink:0;transition:color .15s}
+.sb-foot{margin-top:auto;border-top:1px solid var(--bd);padding-top:12px}
+.u-row{display:flex;align-items:center;gap:10px;padding:10px 12px}
+.u-info{flex:1;min-width:0}
+.u-email{font-size:11px;color:var(--tx2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.u-role{font-size:10px;color:var(--purple);font-weight:700}
+
+/* MAIN */
+.main{margin-left:var(--sb);padding:24px 28px;max-width:calc(100vw - var(--sb));min-height:100vh}
+
+/* PAGES */
+.page{display:none}
+.page.on{display:block;animation:fadeUp .25s ease}
+.ph{margin-bottom:22px}
+.ph-greeting{font-size:13px;color:var(--tx2);font-weight:600;margin-bottom:4px}
+.ph-title{font-size:clamp(20px,4vw,28px);font-weight:800;margin-bottom:3px;color:var(--tx)}
+.ph-sub{font-size:13px;color:var(--tx2)}
+
+/* DASHBOARD */
+.progress-banner{background:var(--grad);border-radius:20px;padding:22px 24px;margin-bottom:20px;position:relative;overflow:hidden;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.progress-banner::before{content:'';position:absolute;width:160px;height:160px;background:rgba(255,255,255,.08);border-radius:50%;top:-40px;right:80px}
+.progress-banner::after{content:'';position:absolute;width:100px;height:100px;background:rgba(255,255,255,.08);border-radius:50%;bottom:-30px;right:20px}
+.pb-title{font-size:15px;font-weight:700;opacity:.9;margin-bottom:6px}
+.pb-val{font-size:clamp(28px,7vw,40px);font-weight:800;line-height:1;margin-bottom:4px}
+.pb-sub{font-size:12px;opacity:.8}
+.pb-circle{width:80px;height:80px;flex-shrink:0;position:relative;z-index:1}
+.pb-circle svg{width:80px;height:80px;transform:rotate(-90deg)}
+.pb-circle-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff}
+
+.due-card{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap;box-shadow:var(--shadow)}
+.due-n{font-size:22px;font-weight:800;color:var(--purple)}
+.due-s{font-size:12px;color:var(--tx2);margin-top:2px}
+.due-badge{background:var(--lavender);color:var(--purple);padding:6px 14px;border-radius:99px;font-size:12px;font-weight:700;flex-shrink:0}
+
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.sc{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:16px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.sc-icon-wrap{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px}
+.sc-val{font-size:clamp(20px,4vw,26px);font-weight:800;line-height:1;margin-bottom:3px;color:var(--tx)}
+.sc-lbl{font-size:11px;color:var(--tx2);font-weight:600}
+
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sec-title{font-size:14px;font-weight:800;color:var(--tx)}
+.sec-link{font-size:12px;color:var(--purple);font-weight:700;cursor:pointer}
+
+.box-dash{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.bd-cell{background:var(--bg);border:1.5px solid var(--bd);border-radius:12px;padding:12px 6px;text-align:center;cursor:pointer;transition:all .18s}
+.bd-cell:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--purple)}
+.bd-num{font-size:clamp(16px,4vw,22px);font-weight:800;color:var(--tx)}
+.bd-lbl{font-size:9px;color:var(--tx2);margin-top:3px;line-height:1.3;word-break:break-word;font-weight:600}
+
+/* WORD CARDS */
+.word-card-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.wcard{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;transition:all .18s;box-shadow:var(--shadow);cursor:pointer}
+.wcard:hover{transform:translateY(-2px);box-shadow:var(--shadow2);border-color:var(--purple)}
+.wcard-emoji{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.wcard-info{flex:1;min-width:0}
+.wcard-cat{font-size:10px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
+.wcard-en{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--tx)}
+.wcard-uz{font-size:12px;color:var(--tx2);margin-top:1px}
+.wcard-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.wcard-rating{display:flex;align-items:center;gap:3px;font-size:11px;font-weight:700;color:var(--amb);background:var(--yellow);padding:4px 8px;border-radius:99px}
+.wcard-arrow{width:30px;height:30px;background:var(--lavender);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--purple)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 20px;border-radius:12px;font-size:13px;font-weight:700;transition:all .15s;cursor:pointer;border:none;font-family:var(--font);white-space:nowrap;min-height:44px}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-blue{background:var(--purple);color:#fff;box-shadow:0 3px 12px rgba(139,124,248,.3)}
+.btn-blue:hover{background:var(--ind);box-shadow:0 4px 16px rgba(139,124,248,.4)}
+.btn-qz{background:var(--lavender);color:var(--purple);border:1px solid var(--bd2)}
+.btn-qz:hover{background:#ddd9ff}
+.btn-ghost{background:var(--bg);color:var(--tx2);border:1px solid var(--bd2)}
+.btn-ghost:hover{color:var(--tx);border-color:var(--purple)}
+.btn-danger{background:rgba(240,98,146,.1);color:var(--red);border:1px solid rgba(240,98,146,.2)}
+.btn-danger:hover{background:rgba(240,98,146,.18)}
+
+/* ADD */
+.add-tabs{display:flex;background:var(--bg);border-radius:12px;padding:4px;gap:4px;margin-bottom:16px;border:1px solid var(--bd)}
+.add-tab{flex:1;padding:10px;border-radius:9px;font-size:12px;font-weight:700;color:var(--tx2);cursor:pointer;transition:all .15s;text-align:center}
+.add-tab.on{background:var(--purple);color:#fff;box-shadow:0 2px 8px rgba(139,124,248,.3)}
+.hint{background:var(--lavender);border-radius:12px;padding:12px 14px;font-size:12px;color:var(--purple);line-height:1.7;margin-bottom:14px;border:1px solid var(--bd2)}
+.hint code{background:rgba(139,124,248,.15);padding:2px 6px;border-radius:5px;color:var(--ind);font-family:monospace;font-size:11px}
+.textarea{width:100%;padding:13px 14px;background:var(--bg);border:1.5px solid var(--bd2);border-radius:var(--r2);color:var(--tx);font-family:'Courier New',monospace;font-size:14px;outline:none;resize:vertical;min-height:130px;transition:all .18s}
+.textarea:focus{border-color:var(--purple);background:#fff;box-shadow:0 0 0 3px rgba(139,124,248,.1)}
+.textarea::placeholder{color:var(--tx3)}
+.row-bw{display:flex;align-items:center;justify-content:space-between;margin-top:12px;gap:8px;flex-wrap:wrap}
+.res{margin-top:12px;padding:13px 15px;border-radius:12px;border:1px solid;display:none}
+.res.ok{background:rgba(76,175,125,.08);border-color:rgba(76,175,125,.3);display:block}
+.res.err{background:rgba(240,98,146,.08);border-color:rgba(240,98,146,.3);display:block}
+.res-t{font-weight:700;font-size:13px;margin-bottom:4px}
+.res.ok .res-t{color:var(--grn)}
+.res.err .res-t{color:var(--red)}
+
+/* MY WORDS */
+.toolbar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.srch{flex:1;min-width:160px;position:relative}
+.srch svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--tx3)}
+.srch .inp{padding-left:36px}
+.sel{padding:12px 14px;background:var(--bg2);border:1.5px solid var(--bd2);border-radius:12px;color:var(--tx);font-size:13px;outline:none;cursor:pointer;font-family:var(--font)}
+.sel:focus{border-color:var(--purple)}
+.wlist{display:flex;flex-direction:column;gap:10px}
+.wc{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:10px;transition:all .18s;box-shadow:var(--shadow)}
+.wc:hover{border-color:var(--purple);box-shadow:var(--shadow2);transform:translateY(-1px)}
+.wc-icon{width:42px;height:42px;border-radius:12px;background:var(--lavender);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.wc-info{flex:1;min-width:0}
+.wc-en{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--tx)}
+.wc-uz{font-size:12px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.badge{padding:4px 10px;border-radius:99px;font-size:10px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.b0{background:rgba(160,160,184,.15);color:#8888a8}
+.b1{background:rgba(240,98,146,.12);color:#e06090}
+.b2{background:rgba(255,183,77,.15);color:#e09c2f}
+.b3{background:rgba(139,124,248,.12);color:var(--purple)}
+.b4{background:rgba(168,85,247,.12);color:#a855f7}
+.b5{background:rgba(76,175,125,.12);color:var(--grn)}
+.wc-acts{display:flex;gap:6px;flex-shrink:0}
+.ic-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:9px;border:1px solid var(--bd2);color:var(--tx2);transition:all .15s;cursor:pointer;background:var(--bg)}
+.ic-btn:hover{background:var(--lavender);color:var(--purple);border-color:var(--bd2)}
+.ic-btn.del:hover{background:rgba(240,98,146,.1);color:var(--red);border-color:rgba(240,98,146,.25)}
+
+/* LEARNING */
+.box-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.bx{background:var(--bg2);border:1px solid var(--bd);border-radius:18px;padding:clamp(16px,3vw,22px) clamp(12px,2vw,16px);cursor:pointer;transition:all .2s;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.bx:hover{transform:translateY(-4px);box-shadow:var(--shadow2);border-color:var(--purple)}
+.bx:active{transform:scale(.97)}
+.bx-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 10px}
+.bx-num{font-size:clamp(24px,6vw,32px);font-weight:800;line-height:1;margin-bottom:5px;color:var(--tx)}
+.bx-lbl{font-size:clamp(11px,2.5vw,13px);font-weight:700;margin-bottom:3px;color:var(--tx)}
+.bx-sub{font-size:clamp(9px,2vw,11px);color:var(--tx2)}
+.back-row{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.test-btns{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.test-btns .btn{flex:1;min-width:140px}
+
+/* TEST */
+.twrap{max-width:520px;margin:0 auto}
+.tcard{background:var(--bg2);border:1px solid var(--bd);border-radius:20px;padding:clamp(18px,4vw,28px);box-shadow:var(--shadow)}
+.prog{height:6px;background:var(--bg3);border-radius:99px;margin-bottom:18px;overflow:hidden}
+.prog-f{height:100%;background:var(--grad);border-radius:99px;transition:width .38s ease}
+.t-meta{font-size:12px;color:var(--tx2);text-align:center;margin-bottom:5px;font-weight:600}
+.t-prompt{font-size:clamp(24px,6vw,34px);font-weight:800;text-align:center;line-height:1.2;margin:12px 0 10px;word-break:break-word;color:var(--tx)}
+.t-hint{font-size:13px;color:var(--tx2);text-align:center;margin-bottom:18px}
+.t-inp{width:100%;padding:14px 16px;background:var(--bg);border:1.5px solid var(--bd2);border-radius:12px;color:var(--tx);font-size:16px;outline:none;transition:all .18s}
+.t-inp:focus{border-color:var(--purple);background:#fff;box-shadow:0 0 0 3px rgba(139,124,248,.1)}
+.t-inp::placeholder{color:var(--tx3)}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qopt{padding:clamp(12px,3vw,16px) 14px;background:var(--bg);border:1.5px solid var(--bd2);border-radius:12px;font-size:clamp(13px,3vw,15px);font-weight:600;color:var(--tx);text-align:left;cursor:pointer;transition:all .2s;word-break:break-word;font-family:var(--font)}
+@media(hover:hover){.qopt:hover:not(:disabled){border-color:var(--purple);background:var(--lavender);color:var(--purple)}}
+.qopt.correct{border-color:var(--grn);background:rgba(76,175,125,.1);color:var(--grn)}
+.qopt.wrong{border-color:var(--red);background:rgba(240,98,146,.1);color:var(--red)}
+.qopt:disabled{cursor:default}
+
+/* PROFILE */
+.profile-card{background:var(--bg2);border:1px solid var(--bd);border-radius:20px;padding:24px;max-width:420px;box-shadow:var(--shadow)}
+.profile-top{display:flex;align-items:center;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--bd);margin-bottom:16px}
+.profile-av{width:60px;height:60px;border-radius:18px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#fff;box-shadow:0 4px 16px rgba(139,124,248,.35);flex-shrink:0}
+.profile-name{font-size:17px;font-weight:800;color:var(--tx);margin-bottom:3px}
+.profile-badge{background:var(--lavender);color:var(--purple);padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;display:inline-block}
+.prow{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--bd);font-size:13px}
+.prow:last-of-type{border:none;padding-bottom:0}
+.prow .k{color:var(--tx2);font-weight:600}
+.prow .v{font-weight:700;color:var(--tx)}
+.pstat{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.ps-item{background:var(--bg);border:1px solid var(--bd);border-radius:14px;padding:14px 10px;text-align:center}
+.ps-val{font-size:22px;font-weight:800;color:var(--tx);line-height:1;margin-bottom:3px}
+.ps-lbl{font-size:10px;color:var(--tx2);font-weight:600}
+
+/* TOAST */
+.toast{position:fixed;z-index:9999;bottom:max(20px,env(safe-area-inset-bottom,20px));right:16px;left:16px;max-width:360px;margin:0 auto;background:var(--bg2);border:1px solid var(--bd2);border-radius:16px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px;box-shadow:0 12px 40px rgba(139,124,248,.2);opacity:0;transform:translateY(16px) scale(.96);transition:all .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+@media(min-width:480px){.toast{left:auto;right:20px;bottom:24px}}
+.toast.show{opacity:1;transform:translateY(0) scale(1)}
+.toast.ok{border-color:rgba(76,175,125,.3)}
+.toast.err{border-color:rgba(240,98,146,.3)}
+.toast.warn{border-color:rgba(255,183,77,.3)}
+.t-ico{font-size:22px;flex-shrink:0;line-height:1.1}
+.t-ttl{font-weight:700;font-size:13px;margin-bottom:3px;color:var(--tx)}
+.t-msg{font-size:12px;color:var(--tx2);line-height:1.4}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:999;padding:16px}
+.modal-bg.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--bd2);border-radius:20px;padding:24px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(139,124,248,.2);animation:fadeUp .22s ease}
+.m-title{font-size:16px;font-weight:800;margin-bottom:14px;color:var(--tx)}
+.m-acts{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+
+/* LOADER */
+.ov{position:fixed;inset:0;background:rgba(237,233,248,.75);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:9998}
+.ov.on{display:flex}
+.spin-big{width:42px;height:42px;border:3px solid var(--bd2);border-top-color:var(--purple);border-radius:50%;animation:spin .7s linear infinite}
+.spin{width:15px;height:15px;border:2px solid rgba(139,124,248,.3);border-top-color:var(--purple);border-radius:50%;animation:spin .6s linear infinite;display:inline-block;vertical-align:middle}
+
+/* EMPTY */
+.empty{text-align:center;padding:clamp(32px,8vw,56px) 20px;color:var(--tx2)}
+.empty-icon{font-size:48px;margin-bottom:12px}
+.empty-t{font-size:17px;font-weight:800;color:var(--tx);margin-bottom:6px}
+.empty-s{font-size:13px;margin-bottom:16px;color:var(--tx2)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* RESPONSIVE */
+@media(min-width:769px){
+  .hdr,.bnav{display:none}
+  .sb{display:flex}
+  .main{padding-bottom:36px}
+}
+@media(max-width:768px){
+  .sb{display:none}
+  .hdr{display:flex}
+  .bnav{display:flex}
+  .main{margin-left:0;max-width:100vw;padding:14px 14px calc(var(--bnav) + env(safe-area-inset-bottom,0px) + 14px);min-height:calc(100vh - var(--hdr))}
+  .stat-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .box-dash{grid-template-columns:repeat(3,1fr);gap:6px}
+  .box-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .qgrid{grid-template-columns:1fr 1fr}
+  .tcard{padding:16px 14px}
+  .due-card{flex-direction:column;align-items:flex-start}
+  .toolbar{flex-direction:column}
+  .srch,.sel{width:100%}
+  .progress-banner{flex-direction:column;align-items:flex-start}
+  .pb-circle{display:none}
+  .pstat{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:360px){
+  .qgrid{grid-template-columns:1fr}
+  .box-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .pstat{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="auth">
+  <div class="auth-card">
+
+    <!-- Logo (always visible) -->
+    <div class="auth-logo-wrap">
+      <div class="auth-logo-icon">🧠</div>
+      <div class="auth-logo">BrainBridge</div>
+    </div>
+
+    <!-- Panel: Login / Register -->
+    <div id="panel-login">
+      <div class="auth-sub" style="margin-bottom:18px">So'zlarni oson va tez o'rganing</div>
+      <div class="tabs">
+        <button class="tab on" onclick="authTab('login')">Kirish</button>
+        <button class="tab" onclick="authTab('reg')">Ro'yxat</button>
+      </div>
+      <!-- Google OAuth redirect button -->
+      <a href="/api/auth/google/redirect" class="btn-google">
+        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.14 0 5.95 1.08 8.17 2.86l6.09-6.09C34.46 3.04 29.5 1 24 1 14.82 1 7.01 6.48 3.56 14.24l7.1 5.52C12.38 13.34 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.52 24.5c0-1.56-.14-3.06-.4-4.5H24v9h12.67c-.55 2.96-2.2 5.46-4.67 7.14l7.18 5.57C43.16 38.04 46.52 31.74 46.52 24.5z"/><path fill="#FBBC05" d="M10.66 28.24A14.56 14.56 0 0 1 9.5 24c0-1.48.25-2.9.66-4.24l-7.1-5.52A23.94 23.94 0 0 0 0 24c0 3.82.92 7.44 2.56 10.64l8.1-6.4z"/><path fill="#34A853" d="M24 47c5.5 0 10.12-1.82 13.48-4.94l-7.18-5.57C28.54 37.9 26.38 38.5 24 38.5c-6.26 0-11.62-3.84-13.34-9.26l-8.1 6.4C6.01 41.52 13.82 47 24 47z"/></svg>
+        Google bilan kirish
+      </a>
+      <div class="or-sep">yoki</div>
+
+      <div id="lf">
+        <div class="fld"><label class="lbl">Email</label><input class="inp" type="email" id="l-e" placeholder="email@example.com" autocomplete="email"/></div>
+        <div class="fld"><label class="lbl">Parol</label><input class="inp" type="password" id="l-p" placeholder="••••••" autocomplete="current-password"/></div>
+        <button class="btn-grad" id="l-btn" onclick="doLogin()">Kirish</button>
+        <div style="text-align:right;margin-top:8px"><a href="#" style="font-size:12px;color:var(--purple);text-decoration:none;font-weight:600" onclick="openForgot();return false">Parolni unutdim?</a></div>
+      </div>
+      <div id="rf" style="display:none">
+        <div class="fld"><label class="lbl">Email</label><input class="inp" type="email" id="r-e" placeholder="email@example.com" autocomplete="email"/></div>
+        <div class="fld"><label class="lbl">Parol</label><input class="inp" type="password" id="r-p" placeholder="Kamida 4 belgi" autocomplete="new-password"/></div>
+        <button class="btn-grad" id="r-btn" onclick="doReg()">Ro'yxatdan o'tish</button>
+      </div>
+      <div class="a-err" id="a-err"></div>
+    </div>
+
+    <!-- Panel: Forgot password -->
+    <div id="panel-forgot" style="display:none">
+      <div style="margin-bottom:18px">
+        <div style="font-size:17px;font-weight:700;color:var(--tx);margin-bottom:6px">Parolni tiklash</div>
+        <div style="font-size:13px;color:var(--tx2)">Email manzilingizni kiriting, tiklash havolasini yuboramiz.</div>
+      </div>
+      <div class="fld"><label class="lbl">Email</label><input class="inp" type="email" id="fg-e" placeholder="email@example.com" autocomplete="email"/></div>
+      <button class="btn-grad" id="fg-btn" onclick="doForgot()" style="margin-top:14px">Havola yuborish</button>
+      <div class="a-err" id="fg-err" style="min-height:16px;margin-top:8px"></div>
+      <div style="text-align:center;margin-top:10px">
+        <a href="#" style="font-size:12px;color:var(--purple);text-decoration:none;font-weight:600" onclick="openLoginPanel();return false">← Kirishga qaytish</a>
+      </div>
+    </div>
+
+    <!-- Panel: Reset password (from email link) -->
+    <div id="panel-reset" style="display:none">
+      <div style="margin-bottom:18px">
+        <div style="font-size:17px;font-weight:700;color:var(--tx);margin-bottom:6px">Yangi parol o'rnating</div>
+        <div style="font-size:13px;color:var(--tx2)">Xavfsiz yangi parol kiriting.</div>
+      </div>
+      <div class="fld"><label class="lbl">Yangi parol</label><input class="inp" type="password" id="rp-new" placeholder="Kamida 4 belgi" autocomplete="new-password"/></div>
+      <div class="fld" style="margin-top:10px"><label class="lbl">Parolni tasdiqlang</label><input class="inp" type="password" id="rp-con" placeholder="Yangi parolni takrorlang" autocomplete="new-password"/></div>
+      <button class="btn-grad" id="rp-btn" onclick="doResetPassword()" style="margin-top:14px">Parolni saqlash</button>
+      <div class="a-err" id="rp-err" style="min-height:16px;margin-top:8px"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header class="hdr">
+    <div class="hdr-left">
+      <div class="hdr-logo-icon">🧠</div>
+      <div class="hdr-logo">BrainBridge</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="hdr-notif">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </div>
+      <div class="avatar" id="m-av"></div>
+    </div>
+  </header>
+
+  <nav class="sb">
+    <div class="sb-logo-row">
+      <div class="sb-logo-icon">🧠</div>
+      <div class="sb-logo">BrainBridge</div>
+    </div>
+    <div class="sb-sec">Asosiy</div>
+    <button class="nav on" data-p="dash" onclick="go('dash')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Dashboard
+    </button>
+    <div class="sb-sec" style="margin-top:8px">So'zlar</div>
+    <button class="nav" data-p="add" onclick="go('add')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>So'z Qo'shish
+    </button>
+    <button class="nav" data-p="mywords" onclick="go('mywords')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>So'zlarim
+    </button>
+    <button class="nav" data-p="learn" onclick="go('learn')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>O'rganish
+    </button>
+    <div class="sb-foot">
+      <button class="nav" data-p="profile" onclick="go('profile')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil
+      </button>
+      <div class="u-row">
+        <div class="avatar" id="sb-av" style="width:34px;height:34px;font-size:13px"></div>
+        <div class="u-info">
+          <div class="u-email" id="sb-em"></div>
+          <div class="u-role">O'quvchi</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="bnav">
+    <button class="bni on" data-p="dash" onclick="go('dash')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <div class="bni-dot"></div>
+    </button>
+    <button class="bni" data-p="add" onclick="go('add')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      <div class="bni-dot"></div>
+    </button>
+    <button class="bni" data-p="mywords" onclick="go('mywords')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <div class="bni-dot"></div>
+    </button>
+    <button class="bni" data-p="learn" onclick="go('learn')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      <div class="bni-dot"></div>
+    </button>
+    <button class="bni" data-p="profile" onclick="go('profile')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <div class="bni-dot"></div>
+    </button>
+  </nav>
+
+  <main class="main">
+    <!-- DASHBOARD -->
+    <div class="page on" id="p-dash">
+      <div class="ph">
+        <div class="ph-greeting" id="ph-greeting">Xush kelibsiz 👋</div>
+        <div class="ph-title">Bugungi Natijangiz</div>
+      </div>
+
+      <div class="progress-banner" id="progress-banner">
+        <div>
+          <div class="pb-title">Umumiy Ball</div>
+          <div class="pb-val" id="pb-score">0</div>
+          <div class="pb-sub">So'zlar o'rganilmoqda</div>
+        </div>
+        <div class="pb-circle">
+          <svg viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="6"/>
+            <circle cx="40" cy="40" r="32" fill="none" stroke="white" stroke-width="6" stroke-linecap="round"
+              stroke-dasharray="201" id="pb-arc" stroke-dashoffset="201"/>
+          </svg>
+          <div class="pb-circle-num" id="pb-pct">0%</div>
+        </div>
+      </div>
+
+      <div id="due-wrap"></div>
+      <div class="stat-grid" id="stat-grid"></div>
+
+      <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:18px;padding:18px;box-shadow:var(--shadow)">
+        <div class="section-header">
+          <div class="sec-title">Bosqichlar</div>
+          <div class="sec-link" onclick="go('learn')">Barchasini ko'r →</div>
+        </div>
+        <div class="box-dash" id="box-dash"></div>
+      </div>
+    </div>
+
+    <!-- ADD -->
+    <div class="page" id="p-add">
+      <div class="ph">
+        <div class="ph-title">So'z Qo'shish</div>
+        <div class="ph-sub">Inglizcha → O'zbekcha</div>
+      </div>
+      <div style="max-width:560px">
+        <div class="add-tabs">
+          <button class="add-tab on" onclick="addTab('bulk')">Ko'plab (max 300)</button>
+          <button class="add-tab" onclick="addTab('single')">Bitta qo'shish</button>
+        </div>
+        <div id="bulk-a">
+          <div class="hint"><strong>Format:</strong> <code>inglizcha - o'zbekcha</code> yoki <code>inglizcha-o'zbekcha</code><br><code>hello - salom</code> &nbsp; <code>run-yugurmoq</code> &nbsp; <code>jump - sakramoq</code></div>
+          <textarea class="textarea" id="bulk-inp" placeholder="hello - salom&#10;run - yugurmoq&#10;apple - olma"></textarea>
+          <div class="row-bw">
+            <span style="font-size:12px;color:var(--tx2);font-weight:600" id="bulk-cnt">0 ta juft</span>
+            <button class="btn btn-blue" onclick="doBulk()" id="bulk-btn">Qo'shish</button>
+          </div>
+          <div id="bulk-res"></div>
+        </div>
+        <div id="single-a" style="display:none">
+          <div class="fld"><label class="lbl">Inglizcha</label><input class="inp" type="text" id="s-en" placeholder="hello" autocomplete="off"/></div>
+          <div class="fld" style="margin-top:12px"><label class="lbl">O'zbekcha</label><input class="inp" type="text" id="s-uz" placeholder="salom" autocomplete="off"/></div>
+          <button class="btn btn-blue" onclick="doSingle()" id="single-btn" style="margin-top:12px">Qo'shish</button>
+          <div id="single-res"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MY WORDS -->
+    <div class="page" id="p-mywords">
+      <div class="ph">
+        <div class="ph-title">So'zlarim</div>
+        <div class="ph-sub">Barcha qo'shilgan so'zlar</div>
+      </div>
+      <div class="toolbar">
+        <div class="srch">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--tx3)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input class="inp" id="w-s" placeholder="Qidirish..." oninput="loadWords()" style="padding-left:38px"/>
+        </div>
+        <select class="sel" id="w-b" onchange="loadWords()"><option value="">Hammasi</option><option value="0">Yangi</option><option value="1">1-bosqich</option><option value="2">2-bosqich</option><option value="3">3-bosqich</option><option value="4">4-bosqich</option><option value="5">O'rganildi</option></select>
+        <select class="sel" id="w-o" onchange="loadWords()"><option value="date">Sana</option><option value="box">Bosqich</option></select>
+      </div>
+      <div id="wlist" class="wlist"></div>
+    </div>
+
+    <!-- LEARN -->
+    <div class="page" id="p-learn">
+      <div class="ph">
+        <div class="ph-title">O'rganish</div>
+        <div class="ph-sub">Bosqich tanlang</div>
+      </div>
+      <div id="p-boxes" class="box-grid"></div>
+      <div id="p-inner" style="display:none">
+        <div class="back-row">
+          <button class="btn btn-ghost" style="padding:9px 16px" onclick="backToBoxes()">← Orqaga</button>
+          <div><div style="font-size:17px;font-weight:800;color:var(--tx)" id="inner-t"></div><div style="font-size:12px;color:var(--tx2)" id="inner-s"></div></div>
+        </div>
+        <div class="test-btns" id="test-btns">
+          <button class="btn btn-blue" id="btn-w" onclick="startTest('write')">✏️ Yozish Testi</button>
+          <button class="btn btn-qz" id="btn-q" onclick="startTest('quiz')">❓ Quiz Test</button>
+        </div>
+        <div id="test-a" style="display:none">
+          <div class="twrap">
+            <div class="tcard">
+              <div class="prog"><div class="prog-f" id="t-prog" style="width:0%"></div></div>
+              <div class="t-meta" id="t-meta"></div>
+              <div class="t-prompt" id="t-prompt"></div>
+              <div class="t-hint" id="t-hint"></div>
+              <div id="t-write">
+                <input class="t-inp" id="t-inp" placeholder="Inglizcha so'zini yozing..." onkeydown="tKey(event)" autocomplete="off" spellcheck="false"/>
+                <button class="btn btn-blue" onclick="checkWrite()" style="width:100%;margin-top:10px" id="t-check-btn">Tekshirish ↵</button>
+              </div>
+              <div id="t-quiz" style="display:none"><div class="qgrid" id="t-opts"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="page" id="p-profile">
+      <div class="ph">
+        <div class="ph-title">Profil</div>
+      </div>
+      <div class="pstat" id="pstat-grid"></div>
+      <div class="profile-card">
+        <div class="profile-top">
+          <div class="profile-av" id="pf-av"></div>
+          <div>
+            <div class="profile-name" id="pf-name"></div>
+            <div class="profile-badge">O'quvchi</div>
+          </div>
+        </div>
+        <div class="prow"><span class="k">Email</span><span class="v" id="pf-email" style="font-size:12px"></span></div>
+        <div class="prow"><span class="k">Jami so'zlar</span><span class="v" id="pf-total"></span></div>
+        <div class="prow"><span class="k">O'rganildi</span><span class="v" id="pf-mastered"></span></div>
+        <div class="prow"><span class="k">Kun ketma-ketligi</span><span class="v" id="pf-streak">🔥 <span id="pf-streak-n"></span></span></div>
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-qz" onclick="openChangePassword()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Parolni o'zgartirish
+          </button>
+          <button class="btn btn-danger" onclick="doLogout()">Chiqish</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="m-title" id="m-title"></div>
+    <div id="m-body"></div>
+    <div class="m-acts" id="m-acts"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <div class="t-ico" id="t-ico"></div>
+  <div><div class="t-ttl" id="t-ttl"></div><div class="t-msg" id="t-msg"></div></div>
+</div>
+
+<div class="ov" id="ov"><div class="spin-big"></div></div>
+
+<script>
+const API=(location.port==='8000'||location.port==='')?'/api':'http://localhost:8000/api';
+const BOX_COLORS=['#8888a8','#F06292','#FFB74D','#8B7CF8','#a855f7','#4CAF7D'];
+const BOX_BG=['rgba(136,136,168,.12)','rgba(240,98,146,.12)','rgba(255,183,77,.12)','rgba(139,124,248,.12)','rgba(168,85,247,.12)','rgba(76,175,125,.12)'];
+const BOX_EMOJIS=['🌱','🔴','🟡','💜','🌟','✅'];
+const BOX_LABELS=['Yangi','1-bosqich','2-bosqich','3-bosqich','4-bosqich',"O'rganildi"];
+const BOX_SUBS=["Hali o'rganilmagan","1 kundan keyin","3 kundan keyin","7 kundan keyin","14 kundan keyin","30 kundan keyin"];
+let TOKEN=localStorage.getItem('bb_tok')||null;
+let ME=JSON.parse(localStorage.getItem('bb_me')||'null');
+let testWords=[],testIdx=0,testMode='write',quizMode='uz2en',curBox=0;
+/* synonym group state (write mode only) */
+let testGroups=[],testGrpIdx=0,_grpRemain=[],_grpFound=[];
+function _buildGroups(words){
+  const map={};
+  for(const w of words){
+    const k=w.translation.toLowerCase().trim();
+    if(!map[k])map[k]=[];
+    map[k].push(w);
+  }
+  return Object.values(map).sort(()=>Math.random()-.5);
+}
+const E=id=>document.getElementById(id);
+
+async function api(method,path,body){
+  const h={'Content-Type':'application/json'};
+  if(TOKEN)h['Authorization']='Bearer '+TOKEN;
+  let resp;
+  try{resp=await fetch(API+path,{method,headers:h,body:body?JSON.stringify(body):undefined});}
+  catch{throw new Error("Backend ga ulanib bo'lmadi");}
+  const txt=await resp.text();let data;
+  try{data=JSON.parse(txt);}catch{throw new Error('Server xatosi ('+resp.status+')');}
+  if(resp.status===401){autoLogout();throw new Error("Sessiya tugadi. Qayta kiring.");}
+  if(!resp.ok)throw new Error(data.detail||'Xato');
+  return data;
+}
+async function apiForm(path,body){
+  let resp;
+  try{resp=await fetch(API+path,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(body)});}
+  catch{throw new Error("Backend ga ulanib bo'lmadi.");}
+  const txt=await resp.text();let data;
+  try{data=JSON.parse(txt);}catch{throw new Error('Server xatosi');}
+  if(!resp.ok)throw new Error(data.detail||'Xato');
+  return data;
+}
+
+function toast(msg,type,title){
+  const icons={ok:'✅',err:'❌',warn:'💡'};
+  const titles={ok:title||'Muvaffaqiyat',err:title||'Xato',warn:title||'Eslatma'};
+  const el=E('toast');
+  E('t-ico').textContent=icons[type]||'✅';
+  E('t-ttl').textContent=titles[type];
+  E('t-msg').textContent=msg;
+  el.className='toast '+(type||'ok')+' show';
+  clearTimeout(el._t);
+  el._t=setTimeout(()=>el.classList.remove('show'),3200);
+}
+function showResult(correct,expected,given,box){
+  if(correct)toast('"'+expected+'" — to\'g\'ri!','ok','To\'g\'ri → '+BOX_LABELS[box]);
+  else toast('"'+given+'" emas — "'+expected+'"','warn','Xato → '+BOX_LABELS[box]);
+}
+const loading=v=>E('ov').classList.toggle('on',v);
+function spinBtn(btn,v){if(v){btn._o=btn.innerHTML;btn.innerHTML='<span class="spin"></span>';btn.disabled=true;}else{btn.innerHTML=btn._o||btn.textContent;btn.disabled=false;}}
+
+function authTab(t){
+  document.querySelectorAll('.tab').forEach((b,i)=>b.classList.toggle('on',(i===0&&t==='login')||(i===1&&t==='reg')));
+  E('lf').style.display=t==='login'?'':'none';
+  E('rf').style.display=t==='reg'?'':'none';
+  E('a-err').textContent='';
+}
+async function doLogin(){
+  const em=E('l-e').value.trim(),pw=E('l-p').value;
+  if(!em||!pw){E('a-err').textContent='Email va parolni kiriting.';return;}
+  const btn=E('l-btn');spinBtn(btn,true);
+  try{const d=await apiForm('/auth/login',{username:em,password:pw});saveS(d);enterApp();}
+  catch(e){E('a-err').textContent=e.message;}finally{spinBtn(btn,false);}
+}
+async function doReg(){
+  const em=E('r-e').value.trim(),pw=E('r-p').value;
+  if(!em||!pw){E('a-err').textContent="Maydonlarni to'ldiring.";return;}
+  if(pw.length<4){E('a-err').textContent='Parol kamida 4 belgi.';return;}
+  const btn=E('r-btn');spinBtn(btn,true);
+  try{const d=await api('POST','/auth/register',{email:em,password:pw});saveS(d);enterApp();}
+  catch(e){E('a-err').textContent=e.message;}finally{spinBtn(btn,false);}
+}
+function saveS(d){TOKEN=d.access_token;ME={id:d.user_id,email:d.email};localStorage.setItem('bb_tok',TOKEN);localStorage.setItem('bb_me',JSON.stringify(ME));}
+
+/* ---- Google OAuth redirect callback handler ---- */
+function _handleGoogleCallback(){
+  const p=new URLSearchParams(location.search);
+  const gt=p.get('google_token');
+  const uid=p.get('user_id');
+  const em=p.get('email');
+  const err=p.get('auth_error');
+  if(gt&&uid&&em){
+    TOKEN=gt;
+    ME={id:parseInt(uid),email:em};
+    localStorage.setItem('bb_tok',TOKEN);
+    localStorage.setItem('bb_me',JSON.stringify(ME));
+    history.replaceState({},'','/');
+    return true;
+  }
+  if(err){
+    history.replaceState({},'','/');
+    if(E('a-err')) E('a-err').textContent='Google kirish xatoligi: '+err;
+    return false;
+  }
+  return false;
+}
+
+/* ---- forgot / reset password ---- */
+const AUTH_PANELS=['panel-login','panel-forgot','panel-reset'];
+function _switchPanel(id){
+  AUTH_PANELS.forEach(p=>{const el=E(p);if(el)el.style.display=p===id?'':'none';});
+}
+function openForgot(){
+  _switchPanel('panel-forgot');
+  E('fg-err').textContent='';E('fg-err').style.color='var(--red)';
+  setTimeout(()=>E('fg-e')&&E('fg-e').focus(),100);
+}
+function openLoginPanel(){
+  _switchPanel('panel-login');
+  E('a-err').textContent='';
+}
+async function doForgot(){
+  const em=E('fg-e').value.trim();
+  if(!em){E('fg-err').textContent='Email kiriting.';return;}
+  const btn=E('fg-btn');spinBtn(btn,true);
+  try{
+    const r=await api('POST','/auth/forgot-password',{email:em});
+    E('fg-err').style.color='var(--grn)';
+    E('fg-err').textContent=r.message||'Xat yuborildi.';
+  }catch(e){
+    E('fg-err').style.color='var(--red)';
+    E('fg-err').textContent=e.message;
+  }finally{spinBtn(btn,false);}
+}
+
+let _resetToken=null;
+function openResetPanel(token){
+  _resetToken=token;
+  _switchPanel('panel-reset');
+  E('rp-err').textContent='';E('rp-err').style.color='var(--red)';
+  setTimeout(()=>E('rp-new')&&E('rp-new').focus(),100);
+}
+async function doResetPassword(){
+  const nw=E('rp-new').value,con=E('rp-con').value;
+  const errEl=E('rp-err');errEl.style.color='var(--red)';errEl.textContent='';
+  if(!nw||!con){errEl.textContent='Parolni kiriting.';return;}
+  if(nw.length<4){errEl.textContent='Parol kamida 4 belgi bo\'lsin.';return;}
+  if(nw!==con){errEl.textContent='Parollar mos emas.';return;}
+  const btn=E('rp-btn');spinBtn(btn,true);
+  try{
+    const r=await api('POST','/auth/reset-password',{token:_resetToken,new_password:nw});
+    errEl.style.color='var(--grn)';
+    errEl.textContent=r.message||'Parol tiklandi.';
+    setTimeout(()=>{
+      history.replaceState(null,'','/');
+      _resetToken=null;
+      openLoginPanel();
+    },2200);
+  }catch(e){
+    errEl.textContent=e.message;
+  }finally{spinBtn(btn,false);}
+}
+
+function enterApp(){
+  E('auth').style.display='none';
+  E('app').classList.add('on');
+  const em=ME?.email||'';
+  const initials=em.slice(0,2).toUpperCase();
+  ['m-av','sb-av'].forEach(id=>{const el=E(id);if(el)el.textContent=initials;});
+  const sbEm=E('sb-em');if(sbEm)sbEm.textContent=em;
+  const nameEl=E('pf-name');if(nameEl)nameEl.textContent=em.split('@')[0];
+  const emailEl=E('pf-email');if(emailEl)emailEl.textContent=em;
+  const pfAv=E('pf-av');if(pfAv)pfAv.textContent=initials;
+  const greeting=E('ph-greeting');
+  if(greeting){const name=em.split('@')[0];greeting.textContent='Xush kelibsiz, '+name+' 👋';}
+  go('dash');
+}
+
+function autoLogout(){TOKEN=null;ME=null;localStorage.removeItem('bb_tok');localStorage.removeItem('bb_me');E('auth').style.display='';E('app').classList.remove('on');}
+function doLogout(){TOKEN=null;ME=null;localStorage.removeItem('bb_tok');localStorage.removeItem('bb_me');E('auth').style.display='';E('app').classList.remove('on');toast('Chiqildi','ok','Xayr!');}
+
+function go(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nav,.bni').forEach(b=>b.classList.toggle('on',b.dataset.p===page));
+  E('p-'+page).classList.add('on');
+  if(page==='dash')loadDash();
+  if(page==='mywords')loadWords();
+  if(page==='learn')loadBoxes();
+  if(page==='profile')loadProfile();
+}
+
+async function loadDash(){
+  try{
+    const d=await api('GET','/words/stats');
+    const total=d.total||0;
+    const mastered=d.boxes?.[5]||0;
+    const pct=total>0?Math.round((mastered/total)*100):0;
+
+    E('pb-score').textContent=total;
+    E('pb-pct').textContent=pct+'%';
+    const arc=E('pb-arc');
+    if(arc){const circ=201;arc.style.strokeDashoffset=circ-(circ*(pct/100));}
+
+    const due=d.due||0;
+    E('due-wrap').innerHTML=due>0?`
+      <div class="due-card">
+        <div>
+          <div class="due-n">${due} ta so'z</div>
+          <div class="due-s">Bugun takrorlash kerak</div>
+        </div>
+        <button class="due-badge" onclick="go('learn')">O'rganish →</button>
+      </div>`:'';
+
+    const statData=[
+      {icon:'📚',bg:'rgba(139,124,248,.12)',val:total,lbl:"Jami so'zlar"},
+      {icon:'✅',bg:'rgba(76,175,125,.12)',val:mastered,lbl:"O'rganildi"},
+      {icon:'⏳',bg:'rgba(255,183,77,.12)',val:due,lbl:"Bugun"},
+      {icon:'🔥',bg:'rgba(240,98,146,.12)',val:(d.streak||0)+' kun',lbl:"Ketma-ketlik"}
+    ];
+    E('stat-grid').innerHTML=statData.map(s=>`
+      <div class="sc">
+        <div class="sc-icon-wrap" style="background:${s.bg}">${s.icon}</div>
+        <div class="sc-val">${s.val}</div>
+        <div class="sc-lbl">${s.lbl}</div>
+      </div>`).join('');
+
+    const boxes=d.boxes||{};
+    E('box-dash').innerHTML=Array.from({length:6},(_,i)=>`
+      <div class="bd-cell" onclick="go('learn')" style="border-color:${boxes[i]>0?'rgba(139,124,248,.3)':'var(--bd)'}">
+        <div class="bd-num" style="color:${BOX_COLORS[i]}">${boxes[i]||0}</div>
+        <div class="bd-lbl">${BOX_LABELS[i]}</div>
+      </div>`).join('');
+  }catch(e){console.error(e);}
+}
+
+async function loadWords(){
+  const q=E('w-s').value.trim();
+  const box=E('w-b').value;
+  const ord=E('w-o').value;
+  let url='/words?limit=200';
+  if(q)url+='&search='+encodeURIComponent(q);
+  if(box!=='')url+='&box='+box;
+  if(ord)url+='&sort='+ord;
+  try{
+    const d=await api('GET',url);
+    const words=d.words||[];
+    if(!words.length){
+      E('wlist').innerHTML=`<div class="empty"><div class="empty-icon">📖</div><div class="empty-t">So'z topilmadi</div><div class="empty-s">Yangi so'zlar qo'shing</div><button class="btn btn-blue" onclick="go('add')">Qo'shish</button></div>`;
+      return;
+    }
+    E('wlist').innerHTML=words.map(w=>`
+      <div class="wc">
+        <div class="wc-icon">${BOX_EMOJIS[w.box||0]}</div>
+        <div class="wc-info">
+          <div class="wc-en">${esc(w.word)}</div>
+          <div class="wc-uz">${esc(w.translation)}</div>
+        </div>
+        <span class="badge b${w.box||0}">${BOX_LABELS[w.box||0]}</span>
+        <div class="wc-acts">
+          <div class="ic-btn" title="Tahrirlash" onclick="editWord(${w.id},'${esc(w.word)}','${esc(w.translation)}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+          <div class="ic-btn del" title="O'chirish" onclick="delWord(${w.id},'${esc(w.word)}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+          </div>
+        </div>
+      </div>`).join('');
+  }catch(e){toast(e.message,'err');}
+}
+
+async function loadBoxes(){
+  E('p-boxes').style.display='grid';E('p-inner').style.display='none';
+  try{
+    const d=await api('GET','/words/stats');
+    const boxes=d.boxes||{};
+    E('p-boxes').innerHTML=Array.from({length:6},(_,i)=>`
+      <div class="bx" onclick="openBox(${i})" style="border-color:${boxes[i]>0?'rgba(139,124,248,.2)':'var(--bd)'}">
+        <div class="bx-icon" style="background:${BOX_BG[i]}">${BOX_EMOJIS[i]}</div>
+        <div class="bx-num" style="color:${BOX_COLORS[i]}">${boxes[i]||0}</div>
+        <div class="bx-lbl">${BOX_LABELS[i]}</div>
+        <div class="bx-sub">${BOX_SUBS[i]}</div>
+      </div>`).join('');
+  }catch(e){toast(e.message,'err');}
+}
+
+async function openBox(box){
+  curBox=box;
+  E('p-boxes').style.display='none';E('p-inner').style.display='block';
+  E('test-a').style.display='none';
+  document.querySelectorAll('#test-btns .btn').forEach(b=>b.style.display='');
+  E('inner-t').textContent=BOX_LABELS[box];
+  E('inner-s').textContent='Test turini tanlang';
+  try{
+    const d=await api('GET','/words?box='+box+'&limit=200');
+    const words=d.words||[];
+    E('inner-s').textContent=words.length+' ta so\'z mavjud';
+    testWords=words;
+    E('btn-w').disabled=words.length===0;
+    E('btn-q').disabled=words.length===0;
+  }catch(e){toast(e.message,'err');}
+}
+
+function backToBoxes(){E('p-boxes').style.display='grid';E('p-inner').style.display='none';}
+
+function startTest(mode){
+  testMode=mode;testIdx=0;
+  if(!testWords.length){toast('So\'z yo\'q','warn');return;}
+  /* Both modes use synonym groups */
+  testGroups=_buildGroups([...testWords].sort(()=>Math.random()-.5));
+  testGrpIdx=0;_grpRemain=[];_grpFound=[];_quizCorrects=[];
+  document.querySelectorAll('#test-btns .btn').forEach(b=>b.style.display='none');
+  E('test-a').style.display='block';
+  renderQ();
+}
+
+function renderQ(){
+  if(testMode==='write'){
+    /* ── WRITE MODE: synonym-group based ── */
+    if(testGrpIdx>=testGroups.length){endTest();return;}
+    const grp=testGroups[testGrpIdx];
+    /* Init group on first entry */
+    if(_grpRemain.length===0&&_grpFound.length===0){
+      _grpRemain=grp.map(w=>w.id);
+    }
+    /* All synonyms found → advance group */
+    if(_grpRemain.length===0){
+      testGrpIdx++;_grpRemain=[];_grpFound=[];
+      renderQ();return;
+    }
+    const pct=Math.round((testGrpIdx/testGroups.length)*100);
+    E('t-prog').style.width=pct+'%';
+    E('t-meta').textContent=(testGrpIdx+1)+' / '+testGroups.length;
+    E('t-write').style.display='';E('t-quiz').style.display='none';
+    E('t-prompt').textContent=grp[0].translation;
+    const total=grp.length,found=_grpFound.length;
+    if(total>1&&found>0)
+      E('t-hint').textContent='✅ '+found+'/'+total+' topildi — yana biri bormi?';
+    else if(total>1)
+      E('t-hint').textContent='Bu tarjimaning '+total+' ta inglizcha varianti bor';
+    else
+      E('t-hint').textContent="Inglizcha so'zini yozing";
+    const inp=E('t-inp');inp.value='';inp.disabled=false;
+    inp.placeholder="Inglizcha so'zini yozing...";
+    setTimeout(()=>inp.focus(),80);
+    return;
+  }
+
+  /* ── QUIZ MODE: group-based synonym-aware ── */
+  if(testGrpIdx>=testGroups.length){endTest();return;}
+  const grp=testGroups[testGrpIdx];
+  /* Choose mode once per group */
+  if(!grp._qmode) grp._qmode=Math.random()>.5?'en2uz':'uz2en';
+  const qmode=grp._qmode;
+
+  const pct=Math.round((testGrpIdx/testGroups.length)*100);
+  E('t-prog').style.width=pct+'%';
+  E('t-meta').textContent=(testGrpIdx+1)+' / '+testGroups.length;
+  E('t-write').style.display='none';E('t-quiz').style.display='';
+
+  /* All English synonyms in this group */
+  const synWords=grp.map(w=>w.word.toLowerCase());
+  /* All Uzbek translations (same for all in group) */
+  const synTrans=grp[0].translation.toLowerCase();
+
+  const fallbackEn=['apple','book','table','water','house','run','eat','sleep','work','study'];
+  const fallbackUz=['olma','kitob','stol','suv','uy','yugurmoq','yemoq','uxlamoq','ishlash','o\'qish'];
+
+  /* Set of all synonym values (lowercase) — used to block them from wrong options */
+  const synWordSet=new Set(synWords);
+
+  if(qmode==='uz2en'){
+    /* Show Uzbek → pick English. ANY synonym = correct. */
+    E('t-prompt').textContent=grp[0].translation;
+    E('t-hint').textContent='Inglizcha so\'zini tanlang';
+    /* Official correct option: one random synonym */
+    const official=grp[Math.floor(Math.random()*grp.length)].word;
+    /* Wrong options: filter by VALUE (not ID) to guarantee no synonym leaks through */
+    const otherWords=testWords
+      .map(x=>x.word)
+      .filter(w=>!synWordSet.has(w.toLowerCase()));
+    const pool=[...new Set(otherWords)].sort(()=>Math.random()-.5);
+    const extra=fallbackEn.filter(f=>!synWordSet.has(f.toLowerCase()));
+    const wrongs=[...pool,...extra]
+      .filter(w=>!synWordSet.has(w.toLowerCase())) /* final safety pass */
+      .filter((v,i,a)=>a.indexOf(v)===i)          /* deduplicate */
+      .slice(0,3);
+    _quizCorrects=synWords;
+    const opts=[official,...wrongs].sort(()=>Math.random()-.5);
+    E('t-opts').innerHTML=opts.map(o=>`<button class="qopt" onmousedown="this.blur()" onclick="answerQuizGrp(this,'${esc(o)}')">${esc(o)}</button>`).join('');
+  }else{
+    /* en2uz: Show one English word → pick Uzbek translation */
+    const w=grp[Math.floor(Math.random()*grp.length)];
+    E('t-prompt').textContent=w.word;
+    E('t-hint').textContent='O\'zbek tarjimasini tanlang';
+    const answer=w.translation;
+    /* Wrong options: translations from OTHER groups only, deduplicated */
+    const otherTrans=testWords
+      .map(x=>x.translation)
+      .filter(t=>t.toLowerCase()!==synTrans);
+    const pool=[...new Set(otherTrans)].sort(()=>Math.random()-.5);
+    const extra=fallbackUz.filter(f=>f.toLowerCase()!==synTrans);
+    const wrongs=[...pool,...extra]
+      .filter(t=>t.toLowerCase()!==synTrans) /* final safety pass */
+      .filter((v,i,a)=>a.indexOf(v)===i)    /* deduplicate */
+      .slice(0,3);
+    _quizCorrects=[answer.toLowerCase()];
+    const opts=[answer,...wrongs].sort(()=>Math.random()-.5);
+    E('t-opts').innerHTML=opts.map(o=>`<button class="qopt" onmousedown="this.blur()" onclick="answerQuizGrp(this,'${esc(o)}')">${esc(o)}</button>`).join('');
+  }
+  if(document.activeElement)document.activeElement.blur();
+}
+
+let _quizCorrects=[];
+
+async function answerQuizGrp(btn,chosen){
+  document.querySelectorAll('.qopt').forEach(b=>b.disabled=true);
+  const grp=testGroups[testGrpIdx];
+  const ok=_quizCorrects.includes(chosen.toLowerCase());
+  btn.classList.add(ok?'correct':'wrong');
+  if(!ok){
+    /* Highlight all correct options */
+    document.querySelectorAll('.qopt').forEach(b=>{
+      if(_quizCorrects.includes(b.textContent.toLowerCase()))b.classList.add('correct');
+    });
+  }
+  try{
+    /* ALL group members advance or fail together */
+    const results=await Promise.all(grp.map(w=>api('POST','/words/'+w.id+'/review',{correct:ok})));
+    const newBox=results[0]?.new_box??results[0]?.box??curBox;
+    if(ok){
+      const allW=grp.map(w=>w.word).join(', ');
+      toast('"'+allW+'" — to\'g\'ri!','ok',BOX_LABELS[newBox]+' bosqichga o\'tdi ✅');
+    }else{
+      toast('To\'g\'ri: "'+_quizCorrects.slice(0,2).join(' / ')+'"','warn','1-bosqichga qaytdi ↩');
+    }
+  }catch{}
+  setTimeout(()=>{testGrpIdx++;renderQ();},1300);
+}
+
+function tKey(e){if(e.key==='Enter')checkWrite();}
+
+async function checkWrite(){
+  const inp=E('t-inp');
+  const btn=E('t-check-btn');
+  if(inp.disabled)return;
+  const given=inp.value.trim().toLowerCase();
+  if(!given)return;
+  inp.disabled=true;
+  if(btn)btn.disabled=true;
+
+  const grp=testGroups[testGrpIdx];
+  /* Find matching synonym among remaining */
+  const matched=grp.find(w=>_grpRemain.includes(w.id)&&w.word.toLowerCase()===given);
+
+  if(matched){
+    /* ✅ Correct synonym found */
+    inp.style.borderColor='var(--grn)';
+    inp.style.background='rgba(76,175,125,.08)';
+    _grpFound.push(matched.id);
+    _grpRemain=_grpRemain.filter(id=>id!==matched.id);
+
+    if(_grpRemain.length>0){
+      /* More synonyms left — encourage and ask next */
+      toast('"'+matched.word+'" — to\'g\'ri! Yana biri bormi? 🔍','ok');
+      setTimeout(()=>{
+        inp.style.borderColor='';inp.style.background='';
+        if(btn)btn.disabled=false;
+        renderQ();
+      },1200);
+    }else{
+      /* All synonyms found — send all correct, advance group */
+      try{
+        const results=await Promise.all(grp.map(w=>api('POST','/words/'+w.id+'/review',{correct:true})));
+        const newBox=results[0]?.new_box??results[0]?.box??curBox;
+        const allWords=grp.map(w=>w.word).join(', ');
+        toast('"'+allWords+'" — barchasi topildi!','ok',BOX_LABELS[newBox]+' bosqichga o\'tdi ✅');
+      }catch{}
+      setTimeout(()=>{
+        inp.style.borderColor='';inp.style.background='';
+        if(btn)btn.disabled=false;
+        testGrpIdx++;_grpRemain=[];_grpFound=[];
+        renderQ();
+      },1500);
+    }
+  }else{
+    /* ❌ Wrong — send all words in group to box 1 (spec: any miss → all reset) */
+    inp.style.borderColor='var(--red)';
+    inp.style.background='rgba(240,98,146,.08)';
+    const remaining=grp.filter(w=>_grpRemain.includes(w.id));
+    inp.value='✗  '+remaining.map(w=>w.word).join(' / ');
+    const missedAnswers=remaining.map(w=>w.word).join(', ');
+    toast('To\'g\'ri: "'+missedAnswers+'"','warn','1-bosqichga qaytdi ↩');
+    /* ALL words in group → box 1 (both already-found and remaining) */
+    try{
+      await Promise.all(grp.map(w=>api('POST','/words/'+w.id+'/review',{correct:false})));
+    }catch{}
+    setTimeout(()=>{
+      inp.style.borderColor='';inp.style.background='';
+      if(btn)btn.disabled=false;
+      testGrpIdx++;_grpRemain=[];_grpFound=[];
+      renderQ();
+    },1600);
+  }
+}
+
+function endTest(){
+  E('test-a').style.display='none';
+  document.querySelectorAll('#test-btns .btn').forEach(b=>b.style.display='');
+  toast('Test yakunlandi!','ok','Barakalla!');
+  loadBoxes();
+}
+
+async function loadProfile(){
+  try{
+    const d=await api('GET','/words/stats');
+    const total=d.total||0;
+    const mastered=d.boxes?.[5]||0;
+    const streak=d.streak||0;
+    E('pf-total').textContent=total;
+    E('pf-mastered').textContent=mastered;
+    E('pf-streak-n').textContent=streak+' kun';
+    const grid=E('pstat-grid');
+    if(grid){
+      grid.innerHTML=`
+        <div class="ps-item"><div class="ps-val" style="color:var(--purple)">${total}</div><div class="ps-lbl">Jami So'z</div></div>
+        <div class="ps-item"><div class="ps-val" style="color:var(--grn)">${mastered}</div><div class="ps-lbl">O'rganildi</div></div>
+        <div class="ps-item"><div class="ps-val" style="color:var(--amb)">${streak}</div><div class="ps-lbl">Kun Streak</div></div>
+      `;
+    }
+  }catch{}
+}
+
+function addTab(t){
+  document.querySelectorAll('.add-tab').forEach((b,i)=>b.classList.toggle('on',(i===0&&t==='bulk')||(i===1&&t==='single')));
+  E('bulk-a').style.display=t==='bulk'?'':'none';
+  E('single-a').style.display=t==='single'?'':'none';
+}
+
+function parseLine(l){
+  l=l.trim();
+  if(!l)return null;
+  /* "hello - salom"  yoki  "hello-salom" */
+  if(l.includes(' - ')){const[a,...b]=l.split(' - ');return{word:a.trim(),translation:b.join(' - ').trim()};}
+  if(l.includes('-')){const i=l.indexOf('-');return{word:l.slice(0,i).trim(),translation:l.slice(i+1).trim()};}
+  return null;
+}
+
+E('bulk-inp')&&E('bulk-inp').addEventListener('input',function(){
+  const cnt=this.value.split('\n').map(parseLine).filter(p=>p&&p.word&&p.translation).length;
+  E('bulk-cnt').textContent=cnt+' ta juft';
+});
+
+async function doBulk(){
+  const raw=E('bulk-inp').value.trim();
+  if(!raw){toast("Maydon bo'sh",'warn');return;}
+  const pairs=raw.split('\n').map(parseLine).filter(p=>p&&p.word&&p.translation);
+  if(!pairs.length){toast('Format xato','err');return;}
+  const btn=E('bulk-btn');spinBtn(btn,true);
+  try{
+    const d=await api('POST','/words/bulk',{words:pairs});
+    const r=E('bulk-res');
+    r.className='res ok';
+    r.innerHTML=`<div class="res-t">✅ ${d.added} ta qo'shildi</div>${d.skipped?'<div style="font-size:12px;margin-top:3px">'+d.skipped+' ta allaqachon mavjud</div>':''}`;
+    if(d.added>0)E('bulk-inp').value='';
+  }catch(e){const r=E('bulk-res');r.className='res err';r.innerHTML='<div class="res-t">❌ '+e.message+'</div>';}
+  finally{spinBtn(btn,false);}
+}
+
+async function doSingle(){
+  const en=E('s-en').value.trim(),uz=E('s-uz').value.trim();
+  if(!en||!uz){toast("Maydonlarni to'ldiring",'warn');return;}
+  const btn=E('single-btn');spinBtn(btn,true);
+  try{
+    await api('POST','/words',{word:en,translation:uz});
+    const r=E('single-res');r.className='res ok';r.innerHTML='<div class="res-t">✅ Qo\'shildi!</div>';
+    E('s-en').value='';E('s-uz').value='';
+    setTimeout(()=>{if(r)r.className='res';},2500);
+  }catch(e){const r=E('single-res');r.className='res err';r.innerHTML='<div class="res-t">❌ '+e.message+'</div>';}
+  finally{spinBtn(btn,false);}
+}
+
+function editWord(id,word,trans){
+  E('m-title').textContent="So'zni tahrirlash";
+  E('m-body').innerHTML=`
+    <div class="fld"><label class="lbl">Inglizcha</label><input class="inp" id="ew-en" value="${word}"/></div>
+    <div class="fld" style="margin-top:10px"><label class="lbl">O'zbekcha</label><input class="inp" id="ew-uz" value="${trans}"/></div>`;
+  E('m-acts').innerHTML=`
+    <button class="btn btn-ghost" onclick="closeModal()">Bekor</button>
+    <button class="btn btn-blue" onclick="saveWord(${id})">Saqlash</button>`;
+  E('modal').classList.add('open');
+}
+async function saveWord(id){
+  const en=E('ew-en').value.trim(),uz=E('ew-uz').value.trim();
+  if(!en||!uz){toast("Maydonlarni to'ldiring",'warn');return;}
+  try{await api('PUT','/words/'+id,{word:en,translation:uz});closeModal();loadWords();toast('Saqlandi','ok');}
+  catch(e){toast(e.message,'err');}
+}
+function delWord(id,word){
+  E('m-title').textContent="O'chirishni tasdiqlang";
+  E('m-body').innerHTML=`<div style="font-size:14px;color:var(--tx2)"><strong style="color:var(--tx)">"${word}"</strong> so'zi o'chirilsinmi?</div>`;
+  E('m-acts').innerHTML=`
+    <button class="btn btn-ghost" onclick="closeModal()">Bekor</button>
+    <button class="btn btn-danger" onclick="confirmDel(${id})">O'chirish</button>`;
+  E('modal').classList.add('open');
+}
+async function confirmDel(id){
+  try{await api('DELETE','/words/'+id);closeModal();loadWords();toast("O'chirildi",'ok');}
+  catch(e){toast(e.message,'err');}
+}
+function closeModal(){E('modal').classList.remove('open');}
+E('modal').addEventListener('click',e=>{if(e.target===E('modal'))closeModal();});
+
+function openChangePassword(){
+  E('m-title').textContent="Parolni o'zgartirish";
+  E('m-body').innerHTML=`
+    <div class="fld"><label class="lbl">Joriy parol</label><input class="inp" type="password" id="cp-cur" placeholder="Joriy parolingiz" autocomplete="current-password"/></div>
+    <div class="fld" style="margin-top:12px"><label class="lbl">Yangi parol</label><input class="inp" type="password" id="cp-new" placeholder="Kamida 4 belgi" autocomplete="new-password"/></div>
+    <div class="fld" style="margin-top:12px"><label class="lbl">Yangi parolni tasdiqlang</label><input class="inp" type="password" id="cp-con" placeholder="Yangi parolni takrorlang" autocomplete="new-password"/></div>
+    <div id="cp-err" style="color:var(--red);font-size:12px;margin-top:8px;font-weight:600;min-height:16px"></div>`;
+  E('m-acts').innerHTML=`
+    <button class="btn btn-ghost" onclick="closeModal()">Bekor</button>
+    <button class="btn btn-blue" id="cp-btn" onclick="doChangePassword()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Saqlash
+    </button>`;
+  E('modal').classList.add('open');
+  setTimeout(()=>E('cp-cur')&&E('cp-cur').focus(),100);
+}
+
+async function doChangePassword(){
+  const cur=E('cp-cur').value;
+  const nw=E('cp-new').value;
+  const con=E('cp-con').value;
+  const errEl=E('cp-err');
+  errEl.textContent='';
+  if(!cur||!nw||!con){errEl.textContent="Barcha maydonlarni to'ldiring.";return;}
+  if(nw.length<4){errEl.textContent='Yangi parol kamida 4 ta belgi bo\'lsin.';return;}
+  if(nw===cur){errEl.textContent='Yangi parol joriy parol bilan bir xil bo\'lmasin.';return;}
+  if(nw!==con){errEl.textContent='Yangi parollar bir-biriga mos emas.';return;}
+  const btn=E('cp-btn');spinBtn(btn,true);
+  try{
+    const res=await api('POST','/auth/change-password',{current_password:cur,new_password:nw});
+    closeModal();
+    toast(res.message||'Parol muvaffaqiyatli o\'zgartirildi','ok');
+  }catch(e){
+    errEl.textContent=e.message;
+  }finally{spinBtn(btn,false);}
+}
+
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+
+window.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&testMode==='write'&&E('test-a').style.display!=='none'){e.preventDefault();checkWrite();}
+});
+
+/* ---- Apple Emoji Images (twemoji + Apple CDN) ---- */
+const APPLE_CDN='https://cdn.jsdelivr.net/npm/emoji-datasource-apple@15.1.2/img/apple/64/';
+function appleEmoji(el){
+  if(!window.twemoji)return;
+  twemoji.parse(el||document.body,{
+    callback:icon=>APPLE_CDN+icon+'.png',
+    attributes:()=>({style:'width:1.15em;height:1.15em;vertical-align:-0.22em;display:inline-block;margin:0 1px'})
+  });
+}
+/* Watch DOM changes and auto-apply Apple emojis */
+(function(){
+  let _busy=false;
+  new MutationObserver(muts=>{
+    if(_busy)return;
+    const hasContent=muts.some(m=>[...m.addedNodes].some(n=>n.nodeType===3||(n.nodeType===1&&n.tagName!=='IMG')));
+    if(!hasContent)return;
+    _busy=true;
+    requestAnimationFrame(()=>{appleEmoji();_busy=false;});
+  }).observe(document.body,{childList:true,subtree:true,characterData:true});
+  appleEmoji();
+})();
+
+/* check URL params on load — priority: reset_token > google_token > saved session */
+(function(){
+  const p=new URLSearchParams(location.search);
+  const resetTok=p.get('reset_token');
+  if(resetTok){
+    E('auth').style.display='';
+    E('app').classList.remove('on');
+    openResetPanel(resetTok);
+    return;
+  }
+  /* Google OAuth callback: /?google_token=…&user_id=…&email=… */
+  const googleOk=_handleGoogleCallback();
+  if(googleOk){
+    enterApp();
+    return;
+  }
+  if(TOKEN&&ME){
+    enterApp();
+  }
+})();
+</script>
+</body>
+</html>
