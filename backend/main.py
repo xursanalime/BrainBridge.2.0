@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
 from db import init_db
-from routes import auth, words, reset, google_auth
+from routes import auth, words, reset, google_auth, sentences
 
 
 @asynccontextmanager
@@ -31,6 +31,7 @@ app.include_router(auth.router,        prefix="/api")
 app.include_router(reset.router,       prefix="/api")
 app.include_router(google_auth.router, prefix="/api")
 app.include_router(words.router,       prefix="/api")
+app.include_router(sentences.router,   prefix="/api")
 
 
 @app.get("/api/health")
