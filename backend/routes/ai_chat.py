@@ -27,6 +27,8 @@ router = APIRouter(prefix="/ai", tags=["ai-chat"])
 _groq = None
 try:
     from groq import Groq
+    from dotenv import load_dotenv
+    load_dotenv()
     _key = os.getenv("GROQ_API_KEY", "")
     if _key:
         _groq = Groq(api_key=_key)
