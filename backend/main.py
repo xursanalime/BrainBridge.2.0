@@ -1,4 +1,7 @@
 import sys, os
+from dotenv import load_dotenv
+
+load_dotenv()  # .env fayldan o'zgartiruvchilarni yuklaymiz (masalan, GROQ_API_KEY)
 sys.path.insert(0, os.path.dirname(__file__))
 
 from contextlib import asynccontextmanager

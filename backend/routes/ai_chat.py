@@ -178,7 +178,7 @@ def send_message(session_id: int, body: SendMessageIn,
 def extract_words(body: ExtractWordsIn, user=Depends(current_user)):
     """Rasm yoki matndan inglizcha so'zlarni chiqaradi."""
     if not _groq:
-        raise HTTPException(503, "AI xizmati ulangmagan (GROQ_API_KEY yo'q)")
+        raise HTTPException(503, "Tizimda vaqtinchalik xatolik yuz berdi. Iltimos keyinroq qayta urinib ko'ring.")
 
     if body.image_b64:
         # Vision model bilan rasm tahlil
@@ -253,7 +253,7 @@ def extract_words(body: ExtractWordsIn, user=Depends(current_user)):
 # ── Groq call ─────────────────────────────────────────────────────────────────
 def _call_groq(history: list[dict]) -> str:
     if not _groq:
-        return "AI xizmati ulangmagan. GROQ_API_KEY ni .env ga qo'shing."
+        return "Uzr, tizimda vaqtinchalik xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko'ring."
     try:
         messages = [{"role": "system", "content": SYSTEM_PROMPT}] + history
         resp = _groq.chat.completions.create(
@@ -264,4 +264,4 @@ def _call_groq(history: list[dict]) -> str:
         )
         return resp.choices[0].message.content.strip()
     except Exception as e:
-        return f"AI xatolik: {str(e)}"
+        return "Uzr, tizimda vaqtinchalik xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko'ring."

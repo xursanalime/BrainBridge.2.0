@@ -18,6 +18,10 @@ Response schema:
 import os
 import json
 import re
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # ── Try Groq first ───────────────────────────────────────────────────────────
 _groq = None
