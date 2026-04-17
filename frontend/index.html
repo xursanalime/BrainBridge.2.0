@@ -397,6 +397,107 @@ a{text-decoration:none;color:inherit}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
+/* ── SPELLING MASHQI ──────────────────────────────── */
+.sp-stats{display:flex;gap:10px;margin-bottom:16px}
+.sp-stat{flex:1;background:var(--bg3);border:1px solid var(--bd2);border-radius:14px;padding:12px;text-align:center}
+.sp-stat-label{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.sp-stat-val{font-size:22px;font-weight:900;color:var(--tx);line-height:1}
+.sp-hearts{display:flex;gap:6px;justify-content:center;margin-bottom:16px}
+.sp-heart{font-size:28px;transition:transform .15s;display:inline-block;line-height:1.2}
+.sp-heart img{width:28px!important;height:28px!important}
+.sp-heart.lost{filter:grayscale(1);opacity:.35}
+.sp-heart.shake{animation:heartBeat .4s ease}
+.sp-tiles{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:14px 0 20px}
+.sp-tile{width:44px;height:44px;border:2px solid var(--bd2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;text-transform:uppercase;color:var(--tx);background:var(--bg3);transition:background .25s,border-color .25s}
+.sp-tile.correct{background:rgba(0,229,160,.15);border-color:#00e5a0;color:#00e5a0}
+.sp-tile.present{background:rgba(255,184,77,.15);border-color:#ffb84d;color:#ffb84d}
+.sp-tile.absent{background:rgba(120,120,140,.1);border-color:var(--bd);color:var(--tx3)}
+.sp-tile.empty-typed{border-color:var(--p2)}
+.sp-speak-btn{width:52px;height:52px;border-radius:50%;background:var(--p);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 20px rgba(124,92,252,.35);transition:transform .15s}
+.sp-speak-btn:hover{transform:scale(1.08)}
+.sp-accent-card{background:var(--bg2);border:2px solid var(--bd2);border-radius:16px;padding:18px 24px;cursor:pointer;text-align:center;transition:all .2s;flex:1}
+.sp-accent-card.on,.sp-accent-card:hover{border-color:var(--p);background:rgba(124,92,252,.08)}
+.sp-accent-label{font-weight:800;font-size:15px;color:var(--tx);margin-top:8px}
+.sp-accent-sub{font-size:11px;color:var(--tx3);margin-top:2px}
+.sp-result-item{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:14px}
+.sp-result-label{font-size:11px;color:var(--tx3);font-weight:600;text-transform:uppercase;margin-bottom:4px}
+.sp-result-value{font-size:24px;font-weight:900;color:var(--tx)}
+@keyframes heartBeat{0%{transform:scale(1)}25%{transform:scale(1.3)}50%{transform:scale(.9)}75%{transform:scale(1.1)}100%{transform:scale(1)}}
+@keyframes tilePop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* ── AI CHAT (BrainBot) ─────────────────── */
+.ai-layout{display:flex;height:calc(100vh - 130px);min-height:400px;border-radius:18px;overflow:hidden;border:1px solid var(--bd2);background:var(--bg2)}
+.ai-sidebar{width:220px;flex-shrink:0;background:var(--bg3);border-right:1px solid var(--bd2);display:flex;flex-direction:column;overflow:hidden}
+.ai-sidebar-head{padding:12px 10px;border-bottom:1px solid var(--bd2)}
+.ai-new-btn{width:100%;padding:8px 12px;background:var(--p);color:#fff;border:none;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;justify-content:center;transition:opacity .15s}
+.ai-new-btn:hover{opacity:.85}
+.ai-chat-list{flex:1;overflow-y:auto;padding:6px}
+.ai-chat-item{display:flex;align-items:center;gap:6px;padding:8px 10px;border-radius:10px;cursor:pointer;transition:background .15s;margin-bottom:2px}
+.ai-chat-item:hover,.ai-chat-item.on{background:rgba(124,92,252,.12)}
+.ai-chat-item.on{border-left:2px solid var(--p)}
+.ai-chat-name{flex:1;font-size:12px;font-weight:600;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ai-chat-acts{display:none;gap:2px;flex-shrink:0}
+.ai-chat-item:hover .ai-chat-acts,.ai-chat-item.on .ai-chat-acts{display:flex}
+.ai-chat-act{width:22px;height:22px;border-radius:6px;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--tx3);transition:background .15s}
+.ai-chat-act:hover{background:var(--bd2);color:var(--tx)}
+.ai-chat-act.del:hover{background:rgba(255,77,109,.15);color:#ff4d6d}
+.ai-main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.ai-header{padding:12px 16px;border-bottom:1px solid var(--bd2);display:flex;align-items:center;gap:10px;flex-shrink:0}
+.ai-header-icon{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--p),#00d4ff);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.ai-messages{flex:1;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:12px}
+.ai-msg{display:flex;gap:8px;max-width:90%;animation:fadeUp .18s ease}
+.ai-msg.user{align-self:flex-end;flex-direction:row-reverse}
+.ai-msg.assistant{align-self:flex-start}
+.ai-msg-av{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;background:var(--p);color:#fff;font-weight:800;font-size:11px}
+.ai-msg.assistant .ai-msg-av{background:linear-gradient(135deg,var(--p),#00d4ff)}
+.ai-msg-bubble{padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.65;word-break:break-word}
+.ai-msg.user .ai-msg-bubble{background:var(--p);color:#fff;border-radius:14px 4px 14px 14px}
+.ai-msg.assistant .ai-msg-bubble{background:var(--bg3);border:1px solid var(--bd2);color:var(--tx);border-radius:4px 14px 14px 14px}
+.ai-msg-bubble code{font-family:monospace;background:rgba(124,92,252,.15);padding:1px 5px;border-radius:4px;font-size:12px}
+.ai-msg-bubble pre{background:rgba(0,0,0,.25);border-radius:8px;padding:10px;overflow-x:auto;font-size:12px;margin:6px 0;white-space:pre-wrap}
+.ai-typing{display:flex;align-items:center;gap:4px;padding:10px 14px;background:var(--bg3);border:1px solid var(--bd2);border-radius:4px 14px 14px 14px;width:fit-content}
+.ai-typing-dot{width:6px;height:6px;border-radius:50%;background:var(--tx3);animation:dotBounce .9s infinite}
+.ai-typing-dot:nth-child(2){animation-delay:.2s}
+.ai-typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes dotBounce{0%,80%,100%{transform:scale(.7);opacity:.4}40%{transform:scale(1);opacity:1}}
+.ai-bottom{border-top:1px solid var(--bd2);flex-shrink:0;background:var(--bg3)}
+.ai-func-bar{display:flex;gap:5px;padding:8px 12px 0;overflow-x:auto;scrollbar-width:none}
+.ai-func-bar::-webkit-scrollbar{display:none}
+.ai-func-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:99px;border:1px solid var(--bd2);background:var(--bg2);color:var(--tx2);font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s}
+.ai-func-btn:hover{border-color:var(--p);color:var(--p2);background:rgba(124,92,252,.08)}
+.ai-input-row{display:flex;gap:8px;padding:8px 12px 12px;align-items:flex-end}
+.ai-inp{flex:1;background:var(--bg2);border:1px solid var(--bd2);border-radius:12px;padding:10px 13px;color:var(--tx);font-size:13px;resize:none;min-height:40px;max-height:120px;outline:none;transition:border-color .15s;line-height:1.5;font-family:inherit}
+.ai-inp:focus{border-color:var(--p)}
+.ai-send-btn{width:38px;height:38px;border-radius:12px;background:var(--p);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;transition:opacity .15s}
+.ai-send-btn:hover{opacity:.85}
+.ai-send-btn:disabled{opacity:.35;cursor:default}
+.ai-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:40px;text-align:center}
+.ai-word-confirm{background:var(--bg2);border:1px solid var(--bd2);border-radius:14px;padding:14px;margin-top:8px}
+.ai-word-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--bd);cursor:pointer;user-select:none}
+.ai-word-row:last-child{border-bottom:none}
+.ai-word-row input[type=checkbox]{width:15px;height:15px;accent-color:var(--p);flex-shrink:0}
+.ai-word-en{font-weight:700;color:var(--tx);font-size:13px}
+.ai-word-uz{font-size:11px;color:var(--tx3);margin-top:1px}
+@media(max-width:768px){
+  .ai-layout{height:calc(100svh - 150px);border-radius:12px}
+  .ai-sidebar{position:fixed;inset:0 auto 0 0;z-index:900;width:260px;transform:translateX(-100%);transition:transform .25s;border-radius:0}
+  .ai-sidebar.mob-open{transform:translateX(0);box-shadow:4px 0 30px rgba(0,0,0,.5)}
+}
+
+/* ── New Features Grid ────────────────────── */
+.nf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:8px}
+.nf-card{background:var(--bg2);border:1px solid var(--bd2);border-radius:22px;padding:26px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s;cursor:default}
+.nf-glow{position:absolute;top:-40px;right:-40px;width:150px;height:150px;border-radius:50%;pointer-events:none}
+.nf-icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;flex-shrink:0}
+.nf-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.nf-title{font-weight:800;font-size:17px;color:var(--tx)}
+.nf-badge{font-size:10px;padding:3px 9px;border-radius:99px;font-weight:800;white-space:nowrap}
+.nf-desc{font-size:13px;color:var(--tx3);line-height:1.65;margin:0 0 18px}
+.nf-tags{display:flex;gap:7px;flex-wrap:wrap}
+.nf-tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;background:var(--bg3);border:1px solid var(--bd2);border-radius:99px;padding:4px 11px;color:var(--tx3)}
+@media(max-width:900px){.nf-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.nf-grid{grid-template-columns:1fr}}
+
 /* ═══════════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════════ */
@@ -430,6 +531,23 @@ a{text-decoration:none;color:inherit}
   #sent-session{max-width:100%!important}
   #sent-inp{font-size:16px!important;min-height:100px!important}
   #sent-session .btn{padding:12px 14px;font-size:14px}
+  /* Spelling mobile */
+  #sp-accent-sel{flex-direction:column!important;gap:12px!important}
+  .sp-acc-card{width:100%!important;padding:16px!important}
+  .sp-tiles{gap:4px!important}
+  .sp-tile{width:32px!important;height:38px!important;font-size:15px!important}
+  /* BrainBot mobile */
+  .ai-layout{height:calc(100svh - 140px)!important;border-radius:12px}
+  .ai-sidebar{position:fixed;inset:0 auto 0 0;z-index:900;width:80vw;max-width:280px;transform:translateX(-100%);transition:transform .25s;border-radius:0}
+  .ai-sidebar.mob-open{transform:translateX(0);box-shadow:4px 0 30px rgba(0,0,0,.6)}
+  #ai-mob-btn{display:flex!important}
+  .ai-func-bar{gap:4px!important;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
+  .ai-func-btn{white-space:nowrap;font-size:10px!important;padding:5px 8px!important}
+  /* Progress banner mobile */
+  .progress-banner{padding:16px!important}
+  /* New features grid already handled by nf-grid CSS */
+  .nf-card{padding:18px!important}
+  .nf-title{font-size:15px!important}
 }
 @media(max-width:400px){
   .qgrid{grid-template-columns:1fr}
@@ -453,8 +571,6 @@ a{text-decoration:none;color:inherit}
       BrainBridge
     </div>
     <div class="lnav-links">
-      <div class="lnav-link" onclick="scrollTo({top:document.getElementById('features').offsetTop-80,behavior:'smooth'})">Imkoniyatlar</div>
-      <div class="lnav-link" onclick="scrollTo({top:document.getElementById('howitworks').offsetTop-80,behavior:'smooth'})">Qanday ishlaydi</div>
       <div class="lnav-link" onclick="openAuthPage('login')">Kirish</div>
       <div class="lnav-cta" onclick="openAuthPage('reg')">Bepul Boshlash →</div>
     </div>
@@ -559,6 +675,72 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 
+  <!-- NEW FEATURES SHOWCASE -->
+  <div style="background:linear-gradient(180deg,var(--bg) 0%,rgba(124,92,252,.05) 100%);border-top:1px solid var(--bd);padding:60px 0">
+    <div class="section">
+      <div class="sec-head">
+        <div class="sec-tag" style="background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(124,92,252,.15));color:#00d4ff;border-color:rgba(0,212,255,.3)">Yangi Funksiyalar</div>
+        <h2 class="sec-title">Endi yanada kuchliroq</h2>
+        <p class="sec-sub">Spelling mashqi, AI yordamchi va boshqa xususiyatlar bilan ingliz tilini yanada samarali o'rganing.</p>
+      </div>
+      <div class="nf-grid">
+
+        <!-- Spelling Card -->
+        <div class="nf-card" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(0,229,160,.5)'" onmouseout="this.style.transform='';this.style.borderColor='var(--bd2)'">
+          <div class="nf-glow" style="background:radial-gradient(circle,rgba(0,229,160,.1) 0%,transparent 70%)"></div>
+          <div class="nf-icon" style="background:linear-gradient(135deg,rgba(0,229,160,.2),rgba(0,212,255,.1))">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00e5a0" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </div>
+          <div class="nf-head">
+            <div class="nf-title">Spelling Mashqi</div>
+            <span class="nf-badge" style="background:linear-gradient(135deg,#00e5a0,#00d4ff);color:#000">YANGI</span>
+          </div>
+          <p class="nf-desc">So'zni ingliz tilida tinglang va harflab yozing. American va British aksent, yurakcha tizimi bilan.</p>
+          <div class="nf-tags">
+            <span class="nf-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Audio</span>
+            <span class="nf-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ff4d6d" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 3 yurak</span>
+            <span class="nf-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg> Streak</span>
+          </div>
+        </div>
+
+        <!-- BrainBot Card -->
+        <div class="nf-card" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(124,92,252,.6)'" onmouseout="this.style.transform='';this.style.borderColor='var(--bd2)'">
+          <div class="nf-glow" style="background:radial-gradient(circle,rgba(124,92,252,.1) 0%,transparent 70%)"></div>
+          <div class="nf-icon" style="background:linear-gradient(135deg,rgba(124,92,252,.2),rgba(0,212,255,.1))">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9b7dff" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10a9.96 9.96 0 0 1-5.08-1.38L2 22l1.38-4.92A9.96 9.96 0 0 1 2 12 10 10 0 0 1 12 2z"/><path d="M8 10h8M8 14h5"/></svg>
+          </div>
+          <div class="nf-head">
+            <div class="nf-title">BrainBot AI</div>
+            <span class="nf-badge" style="background:linear-gradient(135deg,#7c5cfc,#00d4ff);color:#fff">AI</span>
+          </div>
+          <p class="nf-desc">Grammar, writing tekshirish, idioma tahlili, rasm orqali so'z qo'shish — hammasi bir joyda.</p>
+          <div class="nf-tags">
+            <span class="nf-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Writing</span>
+            <span class="nf-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Grammar</span>
+            <span class="nf-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Rasm</span>
+          </div>
+        </div>
+
+        <!-- Gap Tuzish Card -->
+        <div class="nf-card" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,184,77,.5)'" onmouseout="this.style.transform='';this.style.borderColor='var(--bd2)'">
+          <div class="nf-glow" style="background:radial-gradient(circle,rgba(255,184,77,.1) 0%,transparent 70%)"></div>
+          <div class="nf-icon" style="background:linear-gradient(135deg,rgba(255,184,77,.2),rgba(255,77,109,.1))">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffb84d" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8M8 14h5"/></svg>
+          </div>
+          <div class="nf-head">
+            <div class="nf-title">Gap Tuzish AI</div>
+            <span class="nf-badge" style="background:linear-gradient(135deg,#ffb84d,#ff4d6d);color:#fff">AI</span>
+          </div>
+          <p class="nf-desc">So'zlaringiz bilan inglizcha gap tuzing. AI to'g'riligini tekshirib, xatolarni tushuntiradi.</p>
+          <div class="nf-tags">
+            <span class="nf-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg> Leitner</span>
+            <span class="nf-tag"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Feedback</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
   <!-- How It Works -->
   <div id="howitworks">
     <div class="section">
@@ -746,6 +928,12 @@ a{text-decoration:none;color:inherit}
     <button class="nav" data-p="sentences" onclick="go('sentences')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Gap Tuzish <span id="sb-ai-badge" style="margin-left:auto;font-size:9px;background:linear-gradient(135deg,#7c5cfc,#00d4ff);color:#fff;padding:2px 6px;border-radius:99px;font-weight:800">AI</span>
     </button>
+    <button class="nav" data-p="spelling" onclick="go('spelling')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Spelling Mashqi
+    </button>
+    <button class="nav" data-p="aichat" onclick="go('aichat')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10a9.96 9.96 0 0 1-5.08-1.38L2 22l1.38-4.92A9.96 9.96 0 0 1 2 12 10 10 0 0 1 12 2z"/><path d="M8 10h8M8 14h5"/></svg>BrainBot <span style="margin-left:auto;font-size:9px;background:linear-gradient(135deg,#00d4ff,#7c5cfc);color:#fff;padding:2px 6px;border-radius:99px;font-weight:800">AI</span>
+    </button>
     <div class="sb-foot">
       <button class="nav" data-p="profile" onclick="go('profile')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil
@@ -780,6 +968,14 @@ a{text-decoration:none;color:inherit}
     <button class="bni" data-p="sentences" onclick="go('sentences')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       <div class="bni-dot"></div><div class="bni-label">Gap AI</div>
+    </button>
+    <button class="bni" data-p="spelling" onclick="go('spelling')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <div class="bni-dot"></div><div class="bni-label">Spelling</div>
+    </button>
+    <button class="bni" data-p="aichat" onclick="go('aichat')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10a9.96 9.96 0 0 1-5.08-1.38L2 22l1.38-4.92A9.96 9.96 0 0 1 2 12 10 10 0 0 1 12 2z"/><path d="M8 10h8M8 14h5"/></svg>
+      <div class="bni-dot"></div><div class="bni-label">BrainBot</div>
     </button>
     <button class="bni" data-p="profile" onclick="go('profile')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -818,6 +1014,36 @@ a{text-decoration:none;color:inherit}
           <div class="sec-link" onclick="go('learn')">O'rganish →</div>
         </div>
         <div class="box-dash" id="box-dash"></div>
+      </div>
+      <!-- NEW FEATURES SECTION -->
+      <div class="divider" style="margin-top:8px">
+        <div class="section-header">
+          <div class="sec-title2">Yangi Funksiyalar</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <!-- Spelling card -->
+          <div onclick="go('spelling')" style="background:var(--bg2);border:1px solid var(--bd2);border-radius:16px;padding:16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden" onmouseover="this.style.borderColor='var(--p)'" onmouseout="this.style.borderColor='var(--bd2)'">
+            <div style="position:absolute;top:0;right:0;width:70px;height:70px;background:linear-gradient(135deg,rgba(124,92,252,.15),rgba(0,212,255,.1));border-radius:0 16px 0 70px"></div>
+            <div style="margin-bottom:10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00e5a0" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
+            <div style="font-weight:800;font-size:14px;color:var(--tx);margin-bottom:3px">Spelling Mashqi</div>
+            <div style="font-size:11px;color:var(--tx3);line-height:1.4">So'zni eshit va harflab yoz</div>
+            <div style="margin-top:10px;display:flex;align-items:center;gap:4px">
+              <span style="font-size:10px;background:linear-gradient(135deg,#00e5a0,#00d4ff);color:#000;padding:2px 8px;border-radius:99px;font-weight:800">YANGI</span>
+              <span style="font-size:10px;color:var(--tx3)">US + GB aksent</span>
+            </div>
+          </div>
+          <!-- BrainBot card -->
+          <div onclick="go('aichat')" style="background:var(--bg2);border:1px solid var(--bd2);border-radius:16px;padding:16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden" onmouseover="this.style.borderColor='var(--p)'" onmouseout="this.style.borderColor='var(--bd2)'">
+            <div style="position:absolute;top:0;right:0;width:70px;height:70px;background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(124,92,252,.1));border-radius:0 16px 0 70px"></div>
+            <div style="margin-bottom:10px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9b7dff" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10a9.96 9.96 0 0 1-5.08-1.38L2 22l1.38-4.92A9.96 9.96 0 0 1 2 12 10 10 0 0 1 12 2z"/><path d="M8 10h8M8 14h5"/></svg></div>
+            <div style="font-weight:800;font-size:14px;color:var(--tx);margin-bottom:3px">BrainBot AI</div>
+            <div style="font-size:11px;color:var(--tx3);line-height:1.4">Grammar, writing, idioma tahlili</div>
+            <div style="margin-top:10px;display:flex;align-items:center;gap:4px">
+              <span style="font-size:10px;background:linear-gradient(135deg,#00d4ff,#7c5cfc);color:#fff;padding:2px 8px;border-radius:99px;font-weight:800">AI</span>
+              <span style="font-size:10px;color:var(--tx3)">Ilg'or AI yordamchi</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1027,6 +1253,151 @@ a{text-decoration:none;color:inherit}
         </div>
       </div>
     </div>
+    <!-- SPELLING MASHQI PAGE -->
+    <div class="page" id="p-spelling">
+      <div class="ph">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+          <div class="ph-title" style="margin:0">Spelling Mashqi</div>
+          <span style="font-size:11px;background:linear-gradient(135deg,#00e5a0,#00d4ff);color:#000;padding:3px 10px;border-radius:99px;font-weight:800">YANGI</span>
+        </div>
+        <div class="ph-sub">So'zni eshit va to'g'ri yoz</div>
+      </div>
+      <!-- ACCENT SELECTION -->
+      <div id="sp-accent-sel" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px">
+        <div style="background:var(--bg2);border:1px solid var(--bd2);border-radius:20px;padding:28px;width:100%;max-width:440px">
+          <div style="text-align:center;font-size:28px;margin-bottom:8px">🎙️</div>
+          <div style="text-align:center;font-weight:800;font-size:17px;color:var(--tx);margin-bottom:4px">Qaysi aksent?</div>
+          <div style="text-align:center;font-size:13px;color:var(--tx3);margin-bottom:20px">Mashq davomida so'zlar shu aksent bilan o'qiladi</div>
+          <div style="display:flex;gap:12px;margin-bottom:20px">
+            <div class="sp-accent-card on" id="sp-acc-us" onclick="spSelectAccent('us')">
+              <div style="font-size:28px">🇺🇸</div>
+              <div class="sp-accent-label">American</div>
+              <div class="sp-accent-sub">en-US</div>
+            </div>
+            <div class="sp-accent-card" id="sp-acc-gb" onclick="spSelectAccent('gb')">
+              <div style="font-size:28px">🇬🇧</div>
+              <div class="sp-accent-label">British</div>
+              <div class="sp-accent-sub">en-GB</div>
+            </div>
+          </div>
+          <button class="btn btn-blue" style="width:100%;padding:13px;font-size:15px" onclick="spStartSession()">
+            Mashqni boshlash →
+          </button>
+        </div>
+      </div>
+      <!-- SESSION -->
+      <div id="sp-session" style="display:none">
+        <div class="sp-stats">
+          <div class="sp-stat"><div class="sp-stat-label">JAMI</div><div class="sp-stat-val" id="sp-total">0</div></div>
+          <div class="sp-stat"><div class="sp-stat-label">TO'G'RI</div><div class="sp-stat-val" style="color:var(--grn)" id="sp-correct">0</div></div>
+          <div class="sp-stat"><div class="sp-stat-label">XATO</div><div class="sp-stat-val" style="color:var(--red)" id="sp-wrong">0</div></div>
+          <div class="sp-stat"><div class="sp-stat-label">STREAK</div><div class="sp-stat-val" style="color:var(--amber)" id="sp-streak">0</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+          <span style="font-size:11px;color:var(--tx3);font-weight:600;white-space:nowrap" id="sp-prog-txt">1/20</span>
+          <div class="prog" style="flex:1"><div class="prog-f" id="sp-prog-bar" style="width:0%"></div></div>
+          <span style="font-size:11px;color:var(--tx3);font-weight:600" id="sp-prog-pct">0%</span>
+          <div class="sp-hearts" id="sp-hearts">
+            <span class="sp-heart" id="sp-h1">❤️</span>
+            <span class="sp-heart" id="sp-h2">❤️</span>
+            <span class="sp-heart" id="sp-h3">❤️</span>
+          </div>
+        </div>
+        <button class="sp-speak-btn" onclick="spSpeakCurrent()" title="Qayta tinglash">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </button>
+        <div class="sp-tiles" id="sp-tiles"></div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <input type="text" class="inp" id="sp-inp" placeholder="So'zni yozing..." autocomplete="off" autocorrect="off" spellcheck="false"
+            style="flex:1;text-transform:lowercase" onkeydown="spKey(event)" oninput="spUpdateTiles()"/>
+          <button class="btn btn-blue" onclick="spCheck()">Tekshirish ✓</button>
+        </div>
+        <div id="sp-feedback" style="display:none;margin-top:12px"></div>
+        <button class="btn btn-ghost" id="sp-next-btn" onclick="spNextWord()" style="display:none;width:100%;margin-top:12px">Davom etish →</button>
+        <div style="text-align:center;margin-top:16px">
+          <button class="btn btn-ghost" onclick="spEndSession()" style="font-size:12px;color:var(--tx3)">Sessiyani tugatish</button>
+        </div>
+      </div>
+      <!-- RESULT -->
+      <div id="sp-result" style="display:none;text-align:center;padding:20px 0">
+        <div style="font-size:48px;margin-bottom:10px">🎉</div>
+        <div style="font-size:22px;font-weight:900;color:var(--tx);margin-bottom:6px">Sessiya yakunlandi!</div>
+        <div style="font-size:14px;color:var(--tx3);margin-bottom:24px">Natijalaringiz:</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:320px;margin:0 auto 24px">
+          <div class="sp-result-item"><div class="sp-result-label">To'g'ri</div><div class="sp-result-value" style="color:var(--grn)" id="spr-correct">0</div></div>
+          <div class="sp-result-item"><div class="sp-result-label">Xato</div><div class="sp-result-value" style="color:var(--red)" id="spr-wrong">0</div></div>
+          <div class="sp-result-item"><div class="sp-result-label">Foiz</div><div class="sp-result-value" style="color:var(--p2)" id="spr-pct">0%</div></div>
+          <div class="sp-result-item"><div class="sp-result-label">Streak</div><div class="sp-result-value" style="color:var(--amber)" id="spr-streak">0</div></div>
+        </div>
+        <button class="btn btn-blue" style="width:100%;max-width:320px;padding:13px" onclick="spRestartAccent()">Qayta boshlash</button>
+        <button class="btn btn-ghost" style="width:100%;max-width:320px;margin-top:8px" onclick="spRestartAccent()">Aksent tanlash</button>
+      </div>
+    </div>
+
+    <!-- AI CHAT / BRAINBOT PAGE -->
+    <div class="page" id="p-aichat">
+      <div class="ph">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+          <div class="ph-title" style="margin:0">BrainBot</div>
+          <span style="font-size:11px;background:linear-gradient(135deg,#00d4ff,#7c5cfc);color:#fff;padding:3px 10px;border-radius:99px;font-weight:800">AI</span>
+        </div>
+        <div class="ph-sub">Grammar, Writing, Idiomalar va boshqalar</div>
+      </div>
+      <div class="ai-layout">
+        <div class="ai-sidebar" id="ai-sb">
+          <div class="ai-sidebar-head">
+            <button class="ai-new-btn" onclick="aiNewChat()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Yangi suhbat
+            </button>
+          </div>
+          <div class="ai-chat-list" id="ai-chat-list">
+            <div style="text-align:center;padding:20px;font-size:12px;color:var(--tx3)">...</div>
+          </div>
+        </div>
+        <div class="ai-main">
+          <div class="ai-header">
+            <button id="ai-mob-btn" class="btn btn-ghost" style="display:none;padding:6px;width:32px;height:32px;border-radius:8px" onclick="aiToggleSidebar()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <div class="ai-header-icon">🤖</div>
+            <div>
+              <div style="font-weight:800;font-size:14px;color:var(--tx)" id="ai-chat-title">BrainBot</div>
+              <div style="font-size:11px;color:var(--tx3)">Ingliz tili AI yordamchisi</div>
+            </div>
+          </div>
+          <div class="ai-messages" id="ai-messages">
+            <div class="ai-empty" id="ai-welcome">
+              <div style="font-size:42px">🤖</div>
+              <div style="font-size:18px;font-weight:800;color:var(--tx)">BrainBot</div>
+              <div style="font-size:13px;color:var(--tx3);max-width:300px;line-height:1.5">Grammar, writing, idiomalar va so'z qo'shish — hamma narsa bir joyda</div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px">
+                <div onclick="aiFunc('words')" class="ai-func-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Rasm orqali So'z qo'shish</div>
+                <div onclick="aiQuickStart('Quyidagi matnimni tekshir:\n')" class="ai-func-btn">Writing tekshir</div>
+                <div onclick="aiQuickStart('Quyidagi idiomani tushuntir: ')" class="ai-func-btn">Idioma</div>
+              </div>
+            </div>
+          </div>
+          <div class="ai-bottom">
+            <div class="ai-func-bar">
+              <button class="ai-func-btn" onclick="aiFunc('writing')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Writing tekshirish</button>
+              <button class="ai-func-btn" onclick="aiFunc('idiom')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Idioma tahlili</button>
+              <button class="ai-func-btn" onclick="aiFunc('grammar')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Grammar qoidasi</button>
+              <button class="ai-func-btn" onclick="aiFunc('writehelp')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Matn yozish</button>
+              <button class="ai-func-btn" onclick="aiFunc('words')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> So'z qo'shish</button>
+            </div>
+            <div class="ai-input-row">
+              <textarea class="ai-inp" id="ai-inp" rows="1" placeholder="Savol yozing..." onkeydown="aiKey(event)" oninput="aiAutoResize(this)"></textarea>
+              <button class="ai-send-btn" id="ai-send-btn" onclick="aiSend()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <input type="file" id="ai-img-input" accept="image/*" style="display:none" onchange="aiHandleImage(event)"/>
+    </div>
+
   </main>
 </div>
 
@@ -1049,7 +1420,7 @@ a{text-decoration:none;color:inherit}
 <div class="ov" id="ov"><div class="spin-big"></div></div>
 
 <script>
-const API=(location.port==='8000'||location.port==='')?'/api':'http://localhost:8000/api';
+const API='/api';
 const BOX_COLORS=['#8888b8','#ff4d6d','#ffb84d','#7c5cfc','#c084fc','#00e5a0'];
 const BOX_BG=['rgba(136,136,184,.12)','rgba(255,77,109,.12)','rgba(255,184,77,.12)','rgba(124,92,252,.12)','rgba(192,132,252,.12)','rgba(0,229,160,.12)'];
 const BOX_EMOJIS=['🌱','🔴','🟡','💜','🌟','✅'];
@@ -1065,6 +1436,7 @@ function _buildGroups(words){
   return Object.values(map).sort(()=>Math.random()-.5);
 }
 const E=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
 /* ── API helper ─────────────────────────────────── */
 async function api(method,path,body){
@@ -1214,6 +1586,8 @@ function go(page){
   if(page==='learn')loadBoxes();
   if(page==='profile')loadProfile();
   if(page==='sentences')loadSentencePage();
+  if(page==='spelling')loadSpellingPage();
+  if(page==='aichat'){loadAIChatPage();if(window.innerWidth<=768&&E('ai-mob-btn'))E('ai-mob-btn').style.display='flex';}
 }
 
 /* ══════════════════════════════════════════════
@@ -1620,13 +1994,11 @@ async function answerQuizGrp(btn,chosen){
   const ok=_quizCorrects.includes(chosen.toLowerCase());
   btn.classList.add(ok?'correct':'wrong');
   if(!ok){document.querySelectorAll('.qopt').forEach(b=>{if(_quizCorrects.includes(b.textContent.toLowerCase()))b.classList.add('correct');});}
-  try{
-    const results=await Promise.all(grp.map(w=>api('POST','/words/'+w.id+'/review',{correct:ok})));
-    const newBox=results[0]?.new_box??results[0]?.box??curBox;
-    if(ok){const allW=grp.map(w=>w.word).join(', ');toast('"'+allW+'" — to\'g\'ri!','ok',BOX_LABELS[newBox]+' bosqichga o\'tdi ✅');}
-    else{toast('To\'g\'ri: "'+_quizCorrects.slice(0,2).join(' / ')+'"','warn','1-bosqichga qaytdi ↩');}
-  }catch{}
-  setTimeout(()=>{testGrpIdx++;renderQ();},1300);
+  // Fire-and-forget (don't block on API)
+  grp.forEach(w=>api('POST','/words/'+w.id+'/review',{correct:ok}).catch(()=>{}));
+  if(ok){const allW=grp.map(w=>w.word).join(', ');toast(`"${allW}" — to\'g\'ri!`,'ok',"Yuqori bosqichga o'tdi ✅");}
+  else{toast(`To\'g\'ri: "${_quizCorrects.slice(0,2).join(' / ')}"`,'warn',"Orqaga qaytdi ↩");}
+  setTimeout(()=>{testGrpIdx++;_quizCorrects=[];renderQ();},1300);
 }
 
 function tKey(e){if(e.key==='Enter')checkWrite();}
@@ -1796,7 +2168,6 @@ async function doChangePassword(){
 }
 
 /* ── Utils ───────────────────────────────────────── */
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 
 window.addEventListener('keydown',e=>{
   if(e.key==='Enter'&&testMode==='write'&&E('test-a').style.display!=='none'){e.preventDefault();checkWrite();}
@@ -1818,6 +2189,438 @@ function appleEmoji(el){
   }).observe(document.body,{childList:true,subtree:true,characterData:true});
   appleEmoji();
 })();
+
+/* ══════════════════════════════════════════════════════
+   SPELLING MASHQI
+═══════════════════════════════════════════════════════ */
+let _spWords=[], _spIdx=0, _spCorrect=0, _spWrong=0, _spStreak=0;
+let _spHearts=3, _spAccent='us', _spPending=false;
+
+function loadSpellingPage(){
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  E('sp-accent-sel').style.display='flex';
+  E('sp-session').style.display='none';
+  E('sp-result').style.display='none';
+}
+
+function spSelectAccent(acc){
+  _spAccent = acc;
+  E('sp-acc-us').classList.toggle('on', acc==='us');
+  E('sp-acc-gb').classList.toggle('on', acc==='gb');
+}
+
+async function spStartSession(){
+  try{
+    const res = await api('GET','/words?limit=100&offset=0');
+    const all = Array.isArray(res)?res:(res.words||res||[]);
+    if(!all.length){toast('So\'z topilmadi. Avval so\'z qo\'shing.','warn');return;}
+    _spWords = all.sort(()=>Math.random()-.5).slice(0,20);
+    _spIdx=0; _spCorrect=0; _spWrong=0; _spStreak=0; _spHearts=3; _spPending=false;
+    E('sp-accent-sel').style.display='none';
+    E('sp-session').style.display='block';
+    E('sp-result').style.display='none';
+    spRenderHearts();
+    spRenderWord();
+  }catch(e){toast(e.message,'err');}
+}
+
+function spRenderHearts(){
+  for(let i=1;i<=3;i++){
+    const h=E('sp-h'+i);
+    if(h) h.className='sp-heart'+(i>_spHearts?' lost':'');
+  }
+}
+
+function spRenderWord(){
+  if(_spIdx>=_spWords.length){spShowResult();return;}
+  const w=_spWords[_spIdx];
+  const total=_spWords.length;
+  const pct=Math.round((_spIdx/total)*100);
+  E('sp-total').textContent=total;
+  E('sp-correct').textContent=_spCorrect;
+  E('sp-wrong').textContent=_spWrong;
+  E('sp-streak').textContent=_spStreak;
+  E('sp-prog-txt').textContent=(_spIdx+1)+'/'+total;
+  E('sp-prog-bar').style.width=pct+'%';
+  E('sp-prog-pct').textContent=pct+'%';
+  spRenderTiles(w.word,'');
+  E('sp-inp').value='';
+  E('sp-inp').focus();
+  E('sp-feedback').style.display='none';
+  E('sp-next-btn').style.display='none';
+  _spPending=false;
+  // Auto-speak full word + spell letters
+  setTimeout(()=>spSpeakCurrent(),200);
+}
+
+function _spGetVoice(){
+  const voices=window.speechSynthesis.getVoices();
+  const lang=_spAccent==='gb'?'en-GB':'en-US';
+  return voices.find(v=>v.lang===lang) || voices.find(v=>v.lang.startsWith(_spAccent==='gb'?'en-GB':'en-US')) || null;
+}
+
+function spSpeakWord(word, onDone){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(word);
+  u.lang=_spAccent==='gb'?'en-GB':'en-US';
+  u.rate=0.78; u.pitch=1;
+  const v=_spGetVoice(); if(v)u.voice=v;
+  if(onDone)u.onend=onDone;
+  window.speechSynthesis.speak(u);
+}
+
+function spSpellLetters(word, onDone){
+  if(!window.speechSynthesis){if(onDone)onDone();return;}
+  const letters=word.toLowerCase().split('');
+  let i=0;
+  function next(){
+    if(i>=letters.length){if(onDone)setTimeout(onDone,200);return;}
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(letters[i]);
+    u.lang=_spAccent==='gb'?'en-GB':'en-US';
+    u.rate=0.7; u.pitch=1.1;
+    const v=_spGetVoice(); if(v)u.voice=v;
+    u.onend=()=>{i++;setTimeout(next,200);};
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+
+function spSpeakCurrent(){
+  if(_spIdx>=_spWords.length)return;
+  const word=_spWords[_spIdx].word;
+  // First say full word, then spell letters
+  spSpeakWord(word, ()=>{
+    setTimeout(()=>spSpellLetters(word), 400);
+  });
+}
+
+function spRenderTiles(word, typed){
+  const el=E('sp-tiles');
+  const letters=word.toLowerCase().split('');
+  el.innerHTML=letters.map((ch,i)=>{
+    const t=(typed||'').toLowerCase();
+    let cls='sp-tile';
+    // Only show blank tiles (no letters revealed before check)
+    return `<div class="${cls}"> </div>`;
+  }).join('');
+}
+
+function spUpdateTiles(){
+  if(_spPending)return;
+  const w=_spWords[_spIdx];
+  if(!w)return;
+  const typed=E('sp-inp').value.toLowerCase();
+  const letters=w.word.toLowerCase().split('');
+  const el=E('sp-tiles');
+  const tiles=el.querySelectorAll('.sp-tile');
+  tiles.forEach((t,i)=>{
+    t.textContent=typed[i]||' ';
+    t.className='sp-tile'+(typed[i]?' empty-typed':'');
+  });
+}
+
+function spKey(e){
+  if(e.key==='Enter'){e.preventDefault();_spPending?spNextWord():spCheck();}
+}
+
+function spCheck(){
+  if(_spPending)return;
+  const w=_spWords[_spIdx];
+  if(!w)return;
+  const typed=E('sp-inp').value.trim().toLowerCase();
+  const correct=w.word.toLowerCase();
+  const letters=correct.split('');
+  const el=E('sp-tiles');
+  const tiles=el.querySelectorAll('.sp-tile');
+  // Reveal tiles with colors
+  tiles.forEach((tile,i)=>{
+    tile.textContent=correct[i];
+    if(typed[i]===correct[i]) tile.className='sp-tile correct';
+    else if(typed.includes(correct[i])) tile.className='sp-tile present';
+    else tile.className='sp-tile absent';
+  });
+  const fb=E('sp-feedback');
+  fb.style.display='block';
+  _spPending=true;
+  if(typed===correct){
+    _spCorrect++;_spStreak++;
+    fb.innerHTML=`<div style="background:rgba(0,229,160,.1);border:1px solid #00e5a0;border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px"><div style="font-size:20px">✅</div><div><div style="font-weight:700;color:#00e5a0">To'g'ri!</div><div style="font-size:12px;color:var(--tx3)">"${esc(w.word)}" — ${esc(w.translation)}</div></div></div>`;
+    E('sp-next-btn').style.display='block';
+    setTimeout(()=>spNextWord(), 1000);
+  } else {
+    _spWrong++;_spStreak=0;_spHearts--;
+    spRenderHearts();
+    const lostEl=E('sp-h'+(_spHearts+1));
+    if(lostEl){lostEl.classList.add('shake');setTimeout(()=>lostEl.classList.remove('shake'),400);}
+    fb.innerHTML=`<div style="background:rgba(255,77,109,.1);border:1px solid #ff4d6d;border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px"><div style="font-size:20px">❌</div><div><div style="font-weight:700;color:#ff4d6d">Xato!</div><div style="font-size:12px;color:var(--tx3)">To'g'risi: <strong style="color:var(--tx)">${esc(w.word)}</strong> — ${esc(w.translation)}</div></div></div>`;
+    E('sp-next-btn').style.display='block';
+    if(_spHearts<=0){
+      setTimeout(()=>spShowResult(), 1000);
+    } else {
+      setTimeout(()=>spNextWord(), 1000);
+    }
+  }
+  E('sp-correct').textContent=_spCorrect;
+  E('sp-wrong').textContent=_spWrong;
+  E('sp-streak').textContent=_spStreak;
+}
+
+function spNextWord(){
+  if(!_spPending)return;
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  _spIdx++;
+  setTimeout(()=>spRenderWord(), 200);
+}
+
+function spEndSession(){
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  spShowResult();
+}
+
+function spShowResult(){
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  E('sp-session').style.display='none';
+  E('sp-result').style.display='block';
+  const pct=_spWords.length?Math.round((_spCorrect/_spWords.length)*100):0;
+  E('spr-correct').textContent=_spCorrect;
+  E('spr-wrong').textContent=_spWrong;
+  E('spr-pct').textContent=pct+'%';
+  E('spr-streak').textContent=_spStreak;
+}
+
+function spRestartAccent(){
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  E('sp-result').style.display='none';
+  E('sp-accent-sel').style.display='flex';
+}
+
+/* ══════════════════════════════════════════════════════
+   AI CHAT — BrainBot
+═══════════════════════════════════════════════════════ */
+let _aiChats=[], _aiCurrentId=null, _aiSending=false;
+
+function closeModal(){E('modal').classList.remove('open');}
+
+async function loadAIChatPage(){
+  await _aiLoadChats();
+  if(_aiChats.length&&!_aiCurrentId) _aiOpenChat(_aiChats[0].id);
+}
+
+async function _aiLoadChats(){
+  try{
+    const r=await api('GET','/ai/chats');
+    _aiChats=r||[];
+    _aiRenderChatList();
+  }catch(e){console.error('Load chats:',e);}
+}
+
+function _aiRenderChatList(){
+  const el=E('ai-chat-list');
+  if(!el)return;
+  if(!_aiChats.length){
+    el.innerHTML='<div style="text-align:center;padding:20px;font-size:12px;color:var(--tx3)">Hali suhbat yo\'q</div>';
+    return;
+  }
+  el.innerHTML=_aiChats.map(c=>`
+    <div class="ai-chat-item${c.id===_aiCurrentId?' on':''}" onclick="_aiOpenChat(${c.id})" id="aci-${c.id}">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;opacity:.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span class="ai-chat-name" title="${esc(c.name)}">${esc(c.name)}</span>
+      <div class="ai-chat-acts">
+        <button class="ai-chat-act" onclick="event.stopPropagation();aiRenameChat(${c.id})" title="Nomini o'zgartirish">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </button>
+        <button class="ai-chat-act del" onclick="event.stopPropagation();aiDeleteChat(${c.id})" title="O'chirish">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+        </button>
+      </div>
+    </div>`).join('');
+}
+
+async function aiNewChat(){
+  try{
+    const c=await api('POST','/ai/chats',{name:'Yangi suhbat'});
+    _aiChats.unshift(c);
+    _aiCurrentId=c.id;
+    _aiRenderChatList();
+    _aiOpenChat(c.id);
+  }catch(e){toast(e.message,'err');}
+}
+
+async function _aiOpenChat(chatId){
+  _aiCurrentId=chatId;
+  document.querySelectorAll('.ai-chat-item').forEach(el=>el.classList.toggle('on',el.id==='aci-'+chatId));
+  const chat=_aiChats.find(c=>c.id===chatId);
+  if(chat&&E('ai-chat-title'))E('ai-chat-title').textContent=chat.name;
+  const msgsEl=E('ai-messages');
+  msgsEl.innerHTML='<div class="ai-typing" style="align-self:flex-start"><div class="ai-typing-dot"></div><div class="ai-typing-dot"></div><div class="ai-typing-dot"></div></div>';
+  try{
+    const msgs=await api('GET','/ai/chats/'+chatId+'/messages');
+    msgsEl.innerHTML='';
+    if(!msgs.length) _aiShowWelcome(msgsEl);
+    else{ msgs.forEach(m=>_aiAppendMsg(m.role,m.content)); msgsEl.scrollTop=msgsEl.scrollHeight; }
+  }catch(e){ msgsEl.innerHTML=''; _aiShowWelcome(msgsEl); }
+  if(window.innerWidth<=768)E('ai-sb').classList.remove('mob-open');
+}
+
+function _aiShowWelcome(el){
+  el.innerHTML=`<div class="ai-empty" id="ai-welcome">
+    <div style="font-size:42px">🤖</div>
+    <div style="font-size:18px;font-weight:800;color:var(--tx)">BrainBot</div>
+    <div style="font-size:13px;color:var(--tx3);max-width:300px;line-height:1.5">Grammar, writing, idiomalar va so'z qo'shish — hamma narsa bir joyda</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px">
+      <div onclick="aiFunc('words')" class="ai-func-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Rasm orqali So'z qo'shish</div>
+      <div onclick="aiQuickStart('Quyidagi matnimni tekshir va xatolarni tushuntir:\\n')" class="ai-func-btn">Writing tekshir</div>
+      <div onclick="aiQuickStart('Quyidagi idiomani tushuntir: ')" class="ai-func-btn">Idioma</div>
+    </div>
+  </div>`;
+}
+
+function _aiAppendMsg(role,content){
+  const msgsEl=E('ai-messages');
+  const welcome=E('ai-welcome');
+  if(welcome)welcome.remove();
+  const div=document.createElement('div');
+  div.className='ai-msg '+role;
+  div.innerHTML=`<div class="ai-msg-av">${role==='user'?'Siz':'🤖'}</div><div class="ai-msg-bubble">${_aiMarkdown(content)}</div>`;
+  msgsEl.appendChild(div);
+  msgsEl.scrollTop=msgsEl.scrollHeight;
+  return div;
+}
+
+function _aiMarkdown(t){
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/```([\s\S]*?)```/g,'<pre>$1</pre>')
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/\n/g,'<br>');
+}
+
+async function aiSend(){
+  if(_aiSending)return;
+  const inp=E('ai-inp');
+  const content=inp.value.trim();
+  if(!content)return;
+  if(!_aiCurrentId){await aiNewChat();if(!_aiCurrentId)return;}
+  inp.value=''; aiAutoResize(inp);
+  _aiSending=true; E('ai-send-btn').disabled=true;
+  _aiAppendMsg('user',content);
+  const msgsEl=E('ai-messages');
+  const typing=document.createElement('div');
+  typing.className='ai-msg assistant';
+  typing.innerHTML='<div class="ai-msg-av">🤖</div><div class="ai-typing"><div class="ai-typing-dot"></div><div class="ai-typing-dot"></div><div class="ai-typing-dot"></div></div>';
+  msgsEl.appendChild(typing); msgsEl.scrollTop=msgsEl.scrollHeight;
+  try{
+    const res=await api('POST','/ai/chats/'+_aiCurrentId+'/send',{content});
+    typing.remove();
+    _aiAppendMsg('assistant',res.assistant_message.content);
+    const chat=_aiChats.find(c=>c.id===_aiCurrentId);
+    if(chat&&res.session_name&&chat.name!==res.session_name){chat.name=res.session_name;E('ai-chat-title').textContent=res.session_name;_aiRenderChatList();}
+  }catch(e){ typing.remove(); _aiAppendMsg('assistant','Xatolik: '+e.message); }
+  finally{ _aiSending=false; E('ai-send-btn').disabled=false; inp.focus(); }
+}
+
+function aiKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();aiSend();}}
+function aiAutoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
+function aiQuickStart(text){E('ai-inp').value=text;E('ai-inp').focus();aiAutoResize(E('ai-inp'));}
+function aiToggleSidebar(){E('ai-sb').classList.toggle('mob-open');}
+
+function aiFunc(type){
+  const t={
+    writing:'Quyidagi matnimni tekshir (❌ Xato \u2192 \u2705 To\'g\'ri):\n\n',
+    idiom:'Quyidagi idiomani batafsil tushuntir (ma\'nosi, ishlatilishi, 3 misol):\n\n',
+    grammar:'Quyidagi grammar qoidasini o\'zbek tilida tushuntir, misollar kel:\n\n',
+    writehelp:'Menga quyidagi mavzuda inglizcha yozishga yordam ber:\n\n',
+    words:null
+  };
+  if(type==='words'){E('ai-img-input').click();return;}
+  E('ai-inp').value=t[type]||''; E('ai-inp').focus(); aiAutoResize(E('ai-inp'));
+}
+
+function aiRenameChat(chatId){
+  const chat=_aiChats.find(c=>c.id===chatId);
+  if(!chat)return;
+  E('m-title').textContent="Suhbat nomini o'zgartirish";
+  E('m-body').innerHTML='<input class="inp" id="ai-rename-inp" value="'+esc(chat.name)+'" style="width:100%" maxlength="80"/>';
+  E('m-acts').innerHTML=`<button class="btn btn-ghost" onclick="closeModal()">Bekor</button><button class="btn btn-blue" onclick="aiDoRename(${chatId})">Saqlash</button>`;
+  E('modal').classList.add('open');
+  setTimeout(()=>{const i=E('ai-rename-inp');if(i){i.focus();i.select();}},120);
+}
+async function aiDoRename(chatId){
+  const name=(E('ai-rename-inp')?.value||'').trim();
+  if(!name)return;
+  closeModal();
+  try{
+    await api('PATCH','/ai/chats/'+chatId,{name});
+    const chat=_aiChats.find(c=>c.id===chatId);
+    if(chat)chat.name=name;
+    if(_aiCurrentId===chatId&&E('ai-chat-title'))E('ai-chat-title').textContent=name;
+    _aiRenderChatList();
+    toast("Nom o'zgartirildi",'ok');
+  }catch(e){toast(e.message,'err');}
+}
+
+function aiDeleteChat(chatId){
+  const chat=_aiChats.find(c=>c.id===chatId);
+  E('m-title').textContent="Suhbatni o'chirish";
+  E('m-body').innerHTML='<div style="font-size:14px;color:var(--tx2)"><strong style="color:var(--tx)">'+(chat?esc(chat.name):'')+`</strong> suhbati o'chiriladi.</div>`;
+  E('m-acts').innerHTML=`<button class="btn btn-ghost" onclick="closeModal()">Bekor</button><button class="btn btn-danger" onclick="aiDoDelete(${chatId})">O'chirish</button>`;
+  E('modal').classList.add('open');
+}
+async function aiDoDelete(chatId){
+  closeModal();
+  try{
+    await api('DELETE','/ai/chats/'+chatId);
+    _aiChats=_aiChats.filter(c=>c.id!==chatId);
+    if(_aiCurrentId===chatId){
+      _aiCurrentId=null;
+      _aiShowWelcome(E('ai-messages'));
+      if(E('ai-chat-title'))E('ai-chat-title').textContent='BrainBot';
+    }
+    _aiRenderChatList();
+    toast("Suhbat o'chirildi",'ok');
+  }catch(e){toast(e.message,'err');}
+}
+
+async function aiHandleImage(event){
+  const file=event.target.files[0]; if(!file)return; event.target.value='';
+  if(!_aiCurrentId){await aiNewChat();if(!_aiCurrentId)return;}
+  _aiAppendMsg('user','Rasmdan so\u2019z qo\u2019shish so\u2019raldi...');
+  const msgsEl=E('ai-messages');
+  const typing=document.createElement('div');
+  typing.className='ai-msg assistant';
+  typing.innerHTML='<div class="ai-msg-av">🤖</div><div class="ai-typing"><div class="ai-typing-dot"></div><div class="ai-typing-dot"></div><div class="ai-typing-dot"></div></div>';
+  msgsEl.appendChild(typing); msgsEl.scrollTop=msgsEl.scrollHeight;
+  try{
+    const b64=await new Promise((res,rej)=>{const r=new FileReader();r.onload=e=>res(e.target.result.split(',')[1]);r.onerror=rej;r.readAsDataURL(file);});
+    const resp=await api('POST','/ai/extract-words',{image_b64:b64});
+    typing.remove();
+    const words=resp.words||[];
+    if(!words.length){_aiAppendMsg('assistant','Rasmdan so\u2019z topilmadi.');return;}
+    _aiShowWordConfirm(words);
+  }catch(e){typing.remove();_aiAppendMsg('assistant','Xatolik: '+e.message);}
+}
+
+function _aiShowWordConfirm(words){
+  const msgsEl=E('ai-messages');const div=document.createElement('div');
+  div.className='ai-msg assistant';
+  const uid='wc'+Date.now();
+  div.innerHTML=`<div class="ai-msg-av">🤖</div><div class="ai-msg-bubble" style="max-width:100%;min-width:260px"><div style="font-weight:700;margin-bottom:8px">${words.length} ta so\u2019z topildi:</div><div class="ai-word-confirm">${words.map((w,i)=>`<label class="ai-word-row" for="${uid}-${i}"><input type="checkbox" id="${uid}-${i}" data-grp="${uid}" checked/><div><div class="ai-word-en">${esc(w.word)}</div><div class="ai-word-uz">${esc(w.translation)}</div></div></label>`).join('')}</div><button class="btn btn-blue" style="width:100%;margin-top:12px;padding:9px" onclick="aiConfirmWords('${uid}',${JSON.stringify(words).replace(/'/g,"&#39;")})">Tanlangan so\u2019zlarni qo\u2019shish \u2713</button></div>`;
+  msgsEl.appendChild(div); msgsEl.scrollTop=msgsEl.scrollHeight;
+}
+
+async function aiConfirmWords(uid,words){
+  const selected=words.filter((_,i)=>document.getElementById(uid+'-'+i)?.checked);
+  if(!selected.length){toast('Hech narsa tanlanmadi','warn');return;}
+  let added=0;
+  for(const w of selected){try{await api('POST','/words',{word:w.word,translation:w.translation});added++;}catch(e){}}
+  _aiAppendMsg('assistant',added+' ta so\u2019z qo\u2019shildi!');
+  toast(added+' ta so\u2019z qo\u2019shildi','ok');
+}
+
+
 
 /* ── Init ─────────────────────────────────────────── */
 (function(){

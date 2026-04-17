@@ -241,6 +241,7 @@ def check_sentence_endpoint(
         "correct":              result["correct"],
         "praise":               result.get("praise"),
         "error_type":           result.get("error_type"),
+        "error_label":          result.get("error_label"),
         "explanation":          result.get("explanation"),
         "examples":             result.get("examples", []),
         "example_translations": result.get("example_translations", []),

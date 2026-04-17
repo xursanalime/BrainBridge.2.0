@@ -36,7 +36,9 @@ def _get_domain():
 
 
 def _get_redirect_uri():
-    return f"https://{_get_domain()}/api/auth/google/callback"
+    domain = _get_domain()
+    scheme = "http" if domain.startswith("localhost") else "https"
+    return f"{scheme}://{domain}/api/auth/google/callback"
 
 
 def _now():

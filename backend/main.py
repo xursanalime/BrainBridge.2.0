@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
 from db import init_db
-from routes import auth, words, reset, google_auth, sentences
+from routes import auth, words, reset, google_auth, sentences, ai_chat
 
 
 @asynccontextmanager
@@ -32,6 +32,7 @@ app.include_router(reset.router,       prefix="/api")
 app.include_router(google_auth.router, prefix="/api")
 app.include_router(words.router,       prefix="/api")
 app.include_router(sentences.router,   prefix="/api")
+app.include_router(ai_chat.router,     prefix="/api")
 
 
 @app.get("/api/health")
@@ -39,14 +40,24 @@ def health():
     return {"ok": True, "version": "3.0.0"}
 
 
-# Serve frontend
-frontend = os.path.join(os.path.dirname(__file__), "..", "frontend")
-if os.path.isdir(frontend):
-    app.mount("/static", StaticFiles(directory=frontend), name="static")
+# Serve frontend — disk dan to'g'ridan-to'g'ri
+frontend = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend"))
 
+if os.path.isdir(frontend):
+    # index.html — har doim yangi (kesh yo'q)
     @app.get("/", include_in_schema=False)
+    @app.head("/", include_in_schema=False)
     def root():
-        return FileResponse(os.path.join(frontend, "index.html"))
+        resp = FileResponse(os.path.join(frontend, "index.html"), media_type="text/html")
+        resp.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+        resp.headers["Pragma"]        = "no-cache"
+        resp.headers["Expires"]       = "0"
+        return resp
+
+    # Boshqa statik fayllar — html=False (index.html ni o'zi serve qilmasin)
+    app.mount("/", StaticFiles(directory=frontend, html=False), name="frontend")
+
+
 
 
 if __name__ == "__main__":

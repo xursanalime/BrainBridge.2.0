@@ -29,6 +29,7 @@ class User(Base):
 
     words               = relationship("Word", back_populates="user", cascade="all, delete-orphan")
     sentence_progresses = relationship("SentenceProgress", back_populates="user", cascade="all, delete-orphan")
+    ai_chat_sessions    = relationship("AIChatSession", back_populates="user", cascade="all, delete-orphan")
 
 
 class OAuthState(Base):
@@ -99,3 +100,39 @@ class UserSentence(Base):
     created_at      = Column(DateTime(timezone=True), server_default=func.now())
 
     word = relationship("Word", back_populates="sentences")
+
+
+class AIChatSession(Base):
+    """AI chat session — user bilan BrainBot o'rtasidagi suhbat."""
+    __tablename__ = "ai_chat_sessions"
+
+    id         = Column(Integer, primary_key=True, index=True)
+    user_id    = Column(Integer, ForeignKey("users.id"), nullable=False)
+    name       = Column(String(100), default="Yangi suhbat")
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+    user     = relationship("User", back_populates="ai_chat_sessions")
+    messages = relationship("AIChatMessage", back_populates="session",
+                            cascade="all, delete-orphan", order_by="AIChatMessage.id")
+
+    __table_args__ = (
+        Index("ix_ai_chat_user", "user_id", "updated_at"),
+    )
+
+
+class AIChatMessage(Base):
+    """AI chat xabarlari."""
+    __tablename__ = "ai_chat_messages"
+
+    id         = Column(Integer, primary_key=True, index=True)
+    session_id = Column(Integer, ForeignKey("ai_chat_sessions.id"), nullable=False)
+    role       = Column(String(20), nullable=False)   # "user" | "assistant"
+    content    = Column(Text, nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    session = relationship("AIChatSession", back_populates="messages")
+
+    __table_args__ = (
+        Index("ix_ai_msg_session", "session_id"),
+    )
